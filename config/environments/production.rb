@@ -64,12 +64,14 @@ Coursiz::Application.configure do
     config.action_mailer.smtp_settings = {
       :address   => "smtp.mandrillapp.com",
       :port      => 587,
-      :user_name => ENV["pasquale-dagostino@uiowa.edu"],
-      :password  => ENV["VyxsEiw_JBla4mclgHbuYg"]
+      :user_name => ENV["app19101968@heroku.com"],
+      :password  => ENV["D0U1zYdMxKSYWHOrQMM0-Q"],
+      :domain =>         'heroku.com',
+      :authentication => :plain
     }
 
 
-  config.action_mailer.default_url_options = { :host => 'coursiz.herokuapp.com' }
+  #config.action_mailer.default_url_options = { :host => 'heroku.com' }
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp

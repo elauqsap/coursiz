@@ -5,4 +5,5 @@ Coursiz::Application.routes.draw do
   root :to => "home#index"
   devise_for :users
   resources :users
+  match "*path", :to => "home#index"  # catch all redirect to 404
 end

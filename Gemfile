@@ -28,6 +28,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'sqlite3'
+  gem 'thin'
 end
 group :production do
   gem 'thin'

@@ -71,7 +71,7 @@ Coursiz::Application.configure do
     }
 
 
-  config.action_mailer.default_url_options = { :host => 'morning-wave-6768.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'coursiz.herokuapp.com' }
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp

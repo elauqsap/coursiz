@@ -14,7 +14,8 @@ When(/^have added email "(.*?)"$/) do |email|
 end
 
 When(/^have added password "(.*?)"$/) do |password|
-   #fill_in 'Password', :with => password
+
+ #fill_in 'Password', :with => password
 
 end
 
@@ -29,6 +30,7 @@ end
 
 When(/^selected major "(.*?)"$/) do |major|
  select major, :from => 'user_discipline'
+ 
 end
 
 When(/^I have pressed "(.*?)"$/) do |button|
@@ -39,12 +41,17 @@ Then(/^a new account should be created$/) do
  # pending # express the regexp above with the code you wish you had
 end
 
-Then(/^I should be directed to "(.*?)"$/) do |page|
-# assert page.current_path == user_sign_up_path
+Then(/^I should be directed to "(.*?)"$/) do |pages|
+ #current_path.should == "/#{pages}"
+ #save_and_open_page
+ #puts page
 end
 
 Then(/^I should see "(.*?)"$/) do |warning|
   assert page.has_content?(warning)
 end
 
+When(/^have added on signin password "(.*?)"$/) do |password|
+  fill_in 'Password', :with => password
+end
 

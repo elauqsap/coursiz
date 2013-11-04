@@ -2,10 +2,13 @@ Feature: As a user I want to be able to sign up a new account
 
 Scenario: Add valid unique user
 Given I am on "users/sign_up"
+Then I should be directed to "users/sign_up"
 When I have added my name "Big John" 
 And have added email "gunnar-mills@uiowa.edu" 
 And have added password "bigjohn1234"
 And have added password conformation "bigjohn1234" 
+
+
 And selected year "Senior"
 And selected major "Computer"
 And I have pressed "Sign up"

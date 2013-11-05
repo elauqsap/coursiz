@@ -15,8 +15,7 @@ end
 
 When(/^have added password "(.*?)"$/) do |password|
 
- #fill_in 'Password', :with => password
-
+ fill_in("Password", with: password, :match => :prefer_exact)
 end
 
 When(/^have added password conformation "(.*?)"$/) do |password_conformation|
@@ -33,12 +32,20 @@ When(/^selected major "(.*?)"$/) do |major|
  
 end
 
+
 When(/^I have pressed "(.*?)"$/) do |button|
+
  click_button button
 end
 
+When(/^I click link "(.*?)"$/) do |link|
+  click_link link
+end
+
+
 Then(/^a new account should be created$/) do
- # pending # express the regexp above with the code you wish you had
+ 
+# pending # express the regexp above with the code you wish you had
 end
 
 Then(/^I should be directed to "(.*?)"$/) do |pages|
@@ -51,7 +58,5 @@ Then(/^I should see "(.*?)"$/) do |warning|
   assert page.has_content?(warning)
 end
 
-When(/^have added on signin password "(.*?)"$/) do |password|
-  fill_in 'Password', :with => password
-end
+
 

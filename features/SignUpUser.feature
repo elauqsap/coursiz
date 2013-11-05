@@ -7,13 +7,12 @@ When I have added my name "Big John"
 And have added email "gunnar-mills@uiowa.edu" 
 And have added password "bigjohn1234"
 And have added password conformation "bigjohn1234" 
-
-
 And selected year "Senior"
 And selected major "Computer"
 And I have pressed "Sign up"
 Then a new account should be created 
 And I should be directed to "users/sign_up"
+And I should see "Welcome! You have signed up successfully."
 
 Scenario: Using incorrect password conformation
 Given I am on "users/sign_up"
@@ -27,6 +26,19 @@ And I have pressed "Sign up"
 Then I should be directed to "users/sign_up"
 And I should see "Please review the problems below:"
 
+Scenario: Using incorrect email
+Given I am on "users/sign_up"
+When I have added my name "Big John" 
+And have added email "alksdjflsadkjf" 
+And have added password "bigjohn1234"
+And have added password conformation "bigjohn1234" 
+And selected year "Senior"
+And selected major "Computer"
+And I have pressed "Sign up"
+Then I should be directed to "users/sign_up"
+And I should see "Please review the problems below:"
+
+
 Scenario: Leaving name field blank
 Given I am on "users/sign_up"
 When I have added my name "" 
@@ -37,20 +49,7 @@ And selected year "Senior"
 And selected major "Computer"
 And I have pressed "Sign up"
 Then I should be directed to "users/sign_up"
-And I should see "Please review the problems below:"
-
-Scenario: Leaving email field blank
-Given I am on "users/sign_up"
-When I have added my name "Big John" 
-And have added email "gunnar-mills@uiowa.edu" 
-And have added password "bigjohn1234"
-And have added password conformation "bigjohn1234" 
-And selected year "Senior"
-And selected major "Computer"
-And I have pressed "Sign up"
-Then I should be directed to "users/sign_up"
-And I should see "Please review the problems below:"
-
+And I should see "Welcome! You have signed up successfully."
 
 Scenario: Leaving email field blank
 Given I am on "users/sign_up"

@@ -1,11 +1,13 @@
-<ul class="nav">
-    <li>
-    <%= link_to 'Quizzes'%>
-    </li>
-    <li>
-    <%= link_to 'Study Guides' %>
-    </li>
-    <li>
-    <%= link_to 'Stats' %>
-    </li>
-</ul>
+<% if user_signed_in? %>
+	<ul class="nav">
+	    <li>
+	    <%= link_to 'Quizzes'%>
+	    </li>
+	    <li>
+	    <%= link_to 'Study Guides' %>
+	    </li>
+	    <li>
+	    <%= link_to 'Stats' %>
+	    </li>
+	</ul>
+<% end %>

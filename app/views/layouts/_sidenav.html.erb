@@ -1,16 +1,18 @@
 <% if user_signed_in? %>
 	<ul class="nav nav-tabs nav-stacked">
-	    <li>
-	    <%= link_to 'Home'%>
+	    <li class=" <%= 'active' if params[:controller] == 'home' %>">
+	    <%= link_to 'Home', root_path%>
 	    </li>
-	    <li>
-	    <%= link_to 'Quizzes'%>
+	    <li class=" <%= 'active' if params[:controller] == 'quizzes' %>">
+	    <%= link_to 'Quizzes', quizzes_path %>
 	    </li>
-	    <li>
+	    
+	    <li class=" <%= 'active' if params[:controller] == 'X' %>">
 	    <%= link_to 'Study Guides' %>
 	    </li>
-	    <li>
-	    <%= link_to 'Stats' %>
+
+	    <li class=" <%= 'active' if params[:controller] == 'stats' %>">
+	    <%= link_to 'Stats', stats_path %>
 	    </li>
 	</ul>
 <% end %>

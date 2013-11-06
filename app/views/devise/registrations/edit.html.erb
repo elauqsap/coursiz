@@ -1,3 +1,7 @@
+<div class="container">
+<div class="content">
+<div class="row">
+<div class="span10">
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f| %>
   <%= f.error_notification %>
@@ -12,3 +16,7 @@
 <h3>Cancel my account</h3>
 <p>If you would like to cancel your account at any time, please click <%= link_to "here", registration_path(resource_name), :data => { :confirm => "You are about to cancel your account, are you sure?" }, :method => :delete %>.</p>
 <%= link_to "Back", :back %>
+</div>
+</div>
+</div>
+</div>

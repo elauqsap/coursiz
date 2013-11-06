@@ -1,4 +1,15 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
-<% end %>
+<div class="container" id="mainNav">
+  <div class="row-fluid">
+    <div class="span2">
+      <ul class="nav nav-pills nav-stacked">
+          <%= render 'layouts/sidenav' %>
+        </div>
+      </ul>
+      <div class="span10">
+        <% @users.each do |user| %>
+          <p>User: <%=link_to user.name, user %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 Feature: As a user I want to be able to sign in assuming I have already signed up
 
-Background: movies have been added to RottenPotatoes  
+Background: User added to coursiz  
 Given I am on "users/sign_up"
 When I have added my name "Big John" 
 And have added email "gunnar-mills@uiowa.edu" 

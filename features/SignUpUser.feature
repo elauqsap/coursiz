@@ -49,7 +49,7 @@ And selected year "Senior"
 And selected major "Computer"
 And I have pressed "Sign up"
 Then I should be directed to "users/sign_up"
-And I should see "Welcome! You have signed up successfully."
+And I should see "Please review the problems below:"
 
 Scenario: Leaving email field blank
 Given I am on "users/sign_up"

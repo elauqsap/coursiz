@@ -58,5 +58,11 @@ Then(/^I should see "(.*?)"$/) do |warning|
   assert page.has_content?(warning)
 end
 
+Given(/^have added current password "(.*?)"$/) do |password_current|
+  
+ fill_in("Current password", with: password_current, :match => :prefer_exact)
+
+end
+
 
 

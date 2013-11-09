@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.13'
+gem 'simplecov', :require => false, :group => :test
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -29,14 +30,19 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'sqlite3'
   gem 'thin'
+  gem 'capybara'   #moved from :test
+  gem 'cucumber-rails'
+  gem 'cucumber-rails-training-wheels'
+  gem 'launchy'  #useful for debugging user stories
+  gem 'database_cleaner', '1.0.1' #moved from :test
 end
 group :production do
   gem 'thin'
   gem 'pg'
 end
 group :test do
-  gem 'capybara'
-  gem 'database_cleaner', '1.0.1'
+  
+ 
   gem 'email_spec'
   gem 'sqlite3'
 end

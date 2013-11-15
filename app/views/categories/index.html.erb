@@ -5,7 +5,25 @@
         </div>
       <div class="span10">
         <div class="well">
-          <p>Default categories path
+          <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>quiz</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @cat.each do |cat| %>
+                <tr>
+                  <td><%= cat.id %></td>
+                  <td><%= cat.name %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
       </div>
       </div>
     </div>

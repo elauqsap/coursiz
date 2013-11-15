@@ -1,18 +1,20 @@
 class CategoriesController < ApplicationController
+protect_from_forgery
+before_filter :authenticate_user!
 
 	def index
-		if !user_signed_in?
-  			redirect_to new_user_session_path
-  		else
-    		@cat = Category.all
-    	end
+    @cat = Category.all
 	end
 
 	def show
-
-    # @cat = Category.find(params[:category])
     @cat = Category.find_by_name "#{params[:name]}"
+  end
 
+  def new
+    :authenticate_admin!
+  end
+
+  def create
   end
 
 end

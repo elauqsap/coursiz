@@ -9,7 +9,10 @@ class CategoriesController < ApplicationController
 	end
 
 	def show
-    @cat = Category.find(params[:id])
+
+    # @cat = Category.find(params[:category])
+    @cat = Category.find_by_category "#{params[:category]}"
+
   end
 
 end

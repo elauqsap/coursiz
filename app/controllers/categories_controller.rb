@@ -9,8 +9,7 @@ class CategoriesController < ApplicationController
 	end
 
 	def show
-    	@cat = Category.find_by_id(params[:id])
-    	puts "{@cat}"
-  	end
+    @cat = Category.find(params[:id])
+  end
 
 end

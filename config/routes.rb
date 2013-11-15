@@ -7,5 +7,6 @@ Coursiz::Application.routes.draw do
   resources :users
   resources :quizzes
   resources :stats
+  resources :categories
   match "*path", :to => "home#index"  # catch all redirect to 404
 end

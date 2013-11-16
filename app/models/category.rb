@@ -5,7 +5,8 @@ class Category < ActiveRecord::Base
 
   has_many :quizzes
 
-  def self.validator(name)
+  def self.validator(params)
+  	return params[:name].gsub(/(\b\s*)/,'').strip.downcase
   end
 
 end

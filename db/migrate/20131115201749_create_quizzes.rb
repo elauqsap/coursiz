@@ -3,11 +3,11 @@ class CreateQuizzes < ActiveRecord::Migration
     create_table :quizzes do |t|
     	t.references 	:category
     	t.integer 		:difficulty
-    	t.string		:question
-    	t.string		:answer
-    	t.string		:false_1
-    	t.string		:false_2
-    	t.string		:false_3
+    	t.text		    :question
+    	t.text		    :answer
+    	t.text		    :false_1
+    	t.text		    :false_2
+    	t.text		    :false_3
 
     	t.timestamps
     end

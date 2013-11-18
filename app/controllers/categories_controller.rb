@@ -22,14 +22,15 @@ before_filter :authenticate_user!
   def create
     redirect_to root_path unless can? :admin, :all
     @real = params[:category]
+    @cat = Category.new(@params)
     @name = Category.validator(params[:category])
-    if @name.blank?
-      flash[:warning] = "Category can't be blank!"
-      redirect_to categories_manage_path and return
-    end
-    if !Category.find_by_name(@name).blank?
-      flash[:warning] = "#{@real[:name]} already exists!"
-      redirect_to categories_manage_path and return
+    if !@cat.valid?
+      # flash[:warning] = "Category can't be blank!"
+      @cat.save
+      redirect_to categories_manage_path(:errors => @cat.errors.messages) and return
+    # end
+    # if !Category.find_by_name(@name).blank?
+    #   redirect_to categories_manage_path(:errors => @quiz.errors.messages) and return
     else
       Category.create!("name" => "#{@name}", "real_name" => "#{@real[:name]}")
       flash[:notice] = "#{@real[:name]} was added successfully!"
@@ -41,12 +42,13 @@ before_filter :authenticate_user!
     redirect_to root_path unless can? :admin, :all
     @cat = Category.new
     @quiz = Quiz.new
-    if params[:errors].blank?
-      @quiz = Quiz.new
-    else
-      @quiz = Quiz.new
+    if !params[:errors].blank?
       params[:errors].each_pair do |key,val|
-        @quiz.errors.add(key,"#{val}")
+        if key.eql? "name"
+          @cat.errors.add(key,"#{val}")
+        else
+          @quiz.errors.add(key,"#{val}")
+        end
       end
     end
   end

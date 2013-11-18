@@ -21,13 +21,14 @@ before_filter :authenticate_user!
 
   def create
     redirect_to root_path unless can? :admin, :all
+    @real = params[:category]
     @name = Category.validator(params[:category])
     if !Category.find_by_name(@name).blank?
-      flash[:warning] = "#{@name} already exists!"
+      flash[:warning] = "#{@real[:name]} already exists!"
       redirect_to new_category_path
     else
-      Category.create!("name" => "#{@name}")
-      flash[:notice] = "#{@name} was added successfully!"
+      Category.create!("name" => "#{@name}", "real_name" => "#{@real[:name]}")
+      flash[:notice] = "#{@real[:name]} was added successfully!"
       redirect_to root_path
     end
   end

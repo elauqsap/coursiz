@@ -3,27 +3,41 @@ protect_from_forgery
 before_filter :authenticate_user!
 
   def index
-    @cat = Quiz.all
+    @quiz = Quiz.all
   end
 
 	def show
-    @cat = Quiz.find_by_name(params[:id])
+    @quiz = Quiz.find_by_name(params[:id]) || ""
+    if @quiz.empty?
+      flash[:warning] = "The quiz requested does not exist"
+      redirect_to root_path # change later
+    end
   end
 
   def new
-    @cat = Quiz.new
     redirect_to root_path unless can? :admin, :all
+    @cats = Category.list
+    if params[:errors].blank?
+      @quiz = Quiz.new
+    else
+      @quiz = Quiz.new
+      params[:errors].each_pair do |key,val|
+        @quiz.errors.add(key,"#{val}")
+      end
+    end
+
   end
 
   def create
   	redirect_to root_path unless can? :admin, :all
-    @name = Quiz.validator(params[:Quiz])
-    if !Quiz.find_by_name(@name).blank?
-      flash[:warning] = "#{@name} already exists!"
-      redirect_to new_Quiz_path
+    @params = Quiz.fix_category(params[:quiz])
+    @quiz = Quiz.new(@params)
+    if !@quiz.valid?
+      @quiz.save
+      redirect_to new_category_quiz_path(:errors => @quiz.errors.messages)
     else
-      Quiz.create!("name" => "#{@name}")
-      flash[:notice] = "#{@name} was added successfully!"
+      Quiz.create!(@params)
+      flash[:notice] = "The quiz was successfully created!"
       redirect_to root_path
     end
   end

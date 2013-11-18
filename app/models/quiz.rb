@@ -7,6 +7,9 @@ class Quiz < ActiveRecord::Base
 
   def self.fix_category(params)
   	@cat = Category.find_by_real_name(params[:category_id])
+    if @cat.nil?
+      return Hash.new
+    end
   	params[:category_id] = @cat.id
   	puts params[:category_id]
   	return params

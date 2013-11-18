@@ -4,6 +4,7 @@ class Category < ActiveRecord::Base
   validates_presence_of :name
 
   has_many :quizzes
+  accepts_nested_attributes_for :quizzes
 
   def self.list
   	@arr = Array.new

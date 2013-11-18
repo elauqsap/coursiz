@@ -1,8 +1,11 @@
-<div class="container">
-<div class="content">
-<div class="row">
-<div class="span10">
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container" id="mainNav">
+<div class="row-fluid">
+  <div class="span2">
+    <%= render 'layouts/sidenav' %>
+  </div>
+<div class="span8">
+	<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="well">
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f| %>
   <%= f.error_notification %>
   <%= display_base_errors resource %>

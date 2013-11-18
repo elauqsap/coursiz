@@ -1,20 +1,12 @@
-<div class="container">
-<div class="content">
-<div class="row">
-<div class="span10">
 <h2>Create a new Quiz</h2>
 <%= simple_form_for([:categories, @quiz]) do |q| %>
   <%= q.error_notification %>
   <%= q.input :category_id, collection: Category.list, prompt: "Select a Category", :required => true, :autofocus => true %>
   <%= q.input :difficulty, collection: 1..5, prompt: "Select the difficulty", :required => true, :autofocus => true %>
-  <%= q.input :question, :as => :text, :input_html => { :cols => 100, :rows => 8, :class => "span6" } %>
-  <%= q.input :answer, :as => :text, :input_html => { :cols => 100, :rows => 8, :class => "span6" } %>
-  <%= q.input :false_1, :as => :text, :label => "Please add a False Answer", :input_html => { :cols => 100, :rows => 8, :class => "span6" } %>
-  <%= q.input :false_2, :as => :text, :label => "Please add a False Answer", :input_html => { :cols => 100, :rows => 8, :class => "span6" } %>
-  <%= q.input :false_3, :as => :text, :label => "Please add a False Answer", :input_html => { :cols => 100, :rows => 8, :class => "span6" } %>
+  <%= q.input :question, :as => :text, :input_html => { :cols => 100, :rows => 8, :class => "span8 " } %>
+  <%= q.input :answer, :as => :text, :input_html => { :cols => 100, :rows => 8, :class => "span8" } %>
+  <%= q.input :false_1, :as => :text, :label => "Please add a False Answer", :input_html => { :cols => 100, :rows => 8, :class => "span8" } %>
+  <%= q.input :false_2, :as => :text, :label => "Please add a False Answer", :input_html => { :cols => 100, :rows => 8, :class => "span8" } %>
+  <%= q.input :false_3, :as => :text, :label => "Please add a False Answer", :input_html => { :cols => 100, :rows => 8, :class => "span8" } %>
   <%= q.button :submit, "Submit Quiz", :class => 'btn-primary' %>
 <% end %>
-</div>
-</div>
-</div>
-</div>

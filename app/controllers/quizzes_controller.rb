@@ -22,7 +22,7 @@ before_filter :authenticate_user!
       @quiz = Quiz.new
       params[:errors].each_pair do |key,val|
         @quiz.errors.add(key,"#{val}")
-      end
+      end 
     end
   end
 

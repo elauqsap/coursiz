@@ -16,7 +16,7 @@ before_filter :authenticate_user!
 
   def new
     redirect_to root_path unless can? :admin, :all
-    @cat = Category.new
+    redirect_to categories_manage_path
   end
 
   def create
@@ -30,7 +30,7 @@ before_filter :authenticate_user!
     else
       Category.create!("name" => "#{@name}", "real_name" => "#{@real[:name]}")
       flash[:notice] = "#{@real[:name]} was added successfully!"
-      redirect_to root_path
+      redirect_to request.referer
     end
   end
 

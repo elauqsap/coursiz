@@ -22,15 +22,11 @@ before_filter :authenticate_user!
   def create
     redirect_to root_path unless can? :admin, :all
     @real = params[:category]
-    @cat = Category.new(@params)
     @name = Category.validator(params[:category])
+    @cat = Category.new(:name => @name)
     if !@cat.valid?
-      # flash[:warning] = "Category can't be blank!"
       @cat.save
       redirect_to categories_manage_path(:errors => @cat.errors.messages) and return
-    # end
-    # if !Category.find_by_name(@name).blank?
-    #   redirect_to categories_manage_path(:errors => @quiz.errors.messages) and return
     else
       Category.create!("name" => "#{@name}", "real_name" => "#{@real[:name]}")
       flash[:notice] = "#{@real[:name]} was added successfully!"

@@ -23,7 +23,7 @@ before_filter :authenticate_user!
     redirect_to root_path unless can? :admin, :all
     @real = params[:category]
     @name = Category.validator(params[:category])
-    if Category.find_by_name(@name).nil?
+    if @name.blank?
       flash[:warning] = "Category can't be blank!"
       redirect_to categories_manage_path and return
     end

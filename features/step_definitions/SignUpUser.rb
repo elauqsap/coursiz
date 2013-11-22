@@ -1,5 +1,6 @@
 Given(/^I am on "(.*?)"$/) do |page|
-  visit "/#{page}"
+  
+visit "/#{page}"
  
 end
 
@@ -55,6 +56,7 @@ Then(/^I should be directed to "(.*?)"$/) do |pages|
 end
 
 Then(/^I should see "(.*?)"$/) do |warning|
+  save_and_open_page
   assert page.has_content?(warning)
 end
 

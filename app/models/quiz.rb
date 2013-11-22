@@ -10,9 +10,9 @@ class Quiz < ActiveRecord::Base
     if @cat.nil?
       return Hash.new
     end
-	if params[:difficulty].eql'Beginning'
+	if params[:difficulty].eql? 'Beginning'
 		params[:difficulty]=1
-	elsif params[:difficulty].eql'Middle'
+	elsif params[:difficulty].eql? 'Middle'
 		params[:difficulty]=2
 	else 
 		params[:difficulty]=3

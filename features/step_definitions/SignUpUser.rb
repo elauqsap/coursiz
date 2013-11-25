@@ -56,7 +56,7 @@ Then(/^I should be directed to "(.*?)"$/) do |pages|
 end
 
 Then(/^I should see "(.*?)"$/) do |warning|
-  save_and_open_page
+
   assert page.has_content?(warning)
 end
 
@@ -65,6 +65,12 @@ Given(/^have added current password "(.*?)"$/) do |password_current|
  fill_in("Current password", with: password_current, :match => :prefer_exact)
 
 end
+
+When(/^I selected Admin from the database$/) do
+   user = User.find_or_create_by_name :name => 'Admin'
+   user.role_ids = 'admin'
+end
+
 
 
 

@@ -51,13 +51,14 @@ end
 
 Then(/^I should be directed to "(.*?)"$/) do |pages|
  #current_path.should == "/#{pages}"
- #save_and_open_page
+ save_and_open_page
  #puts page
 end
 
 Then(/^I should see "(.*?)"$/) do |warning|
 
   assert page.has_content?(warning)
+  
 end
 
 Given(/^have added current password "(.*?)"$/) do |password_current|
@@ -67,8 +68,12 @@ Given(/^have added current password "(.*?)"$/) do |password_current|
 end
 
 When(/^I selected Admin from the database$/) do
+
    user = User.find_or_create_by_name :name => 'Admin'
-   user.role_ids = 'admin'
+   role = Role.new
+   role.id=user.id
+   role.name= "admin"
+
 end
 
 

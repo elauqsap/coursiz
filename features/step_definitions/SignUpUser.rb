@@ -51,7 +51,7 @@ end
 
 Then(/^I should be directed to "(.*?)"$/) do |pages|
  #current_path.should == "/#{pages}"
- save_and_open_page
+
  #puts page
 end
 
@@ -67,15 +67,17 @@ Given(/^have added current password "(.*?)"$/) do |password_current|
 
 end
 
-When(/^I selected Admin from the database$/) do
 
-   user = User.find_or_create_by_name :name => 'Admin'
-   role = Role.new
-   role.id=user.id
-   role.name= "admin"
 
+When(/^I selected id "(.*?)" Admin from the database$/) do |arg1|
+  user = User.find_or_create_by_id :id => arg1
+   user.add_role('admin')
+   user.save
 end
 
+When(/^have added name "(.*?)"$/) do |category|
+   fill_in 'Name', :with => category
+end
 
 
 

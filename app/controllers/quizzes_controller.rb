@@ -28,7 +28,7 @@ before_filter :authenticate_user!
       redirect_to categories_manage_path(:errors => @quiz.errors.messages) and return
     else
       Quiz.create!(@params)
-      flash[:notice] = "The quiz was successfully created!"
+      flash[:notice] = "The question was successfully created!"
       redirect_to request.referer
     end
   end

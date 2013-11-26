@@ -69,15 +69,6 @@ end
 
 
 
-When(/^I selected id "(.*?)" Admin from the database$/) do |arg1|
-  user = User.find_or_create_by_id :id => arg1
-   user.add_role('admin')
-   user.save
-end
-
-When(/^have added name "(.*?)"$/) do |category|
-   fill_in 'Name', :with => category
-end
 
 
 

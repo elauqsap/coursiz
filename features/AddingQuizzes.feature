@@ -52,6 +52,28 @@ And I have pressed "Sign in"
 Then I should see "Signed in successfully."
 And I should see "Manage"
 
+Scenario: Delete other user 
+
+Given I am on "users/sign_up"
+When I have added my name "Big John" 
+And have added email "gunnar-mills@uiowa.edu" 
+And have added password "bigjohn1234"
+And have added password conformation "bigjohn1234" 
+And selected year "Senior"
+And selected major "Computer"
+And I have pressed "Sign up"
+And I should see "Welcome! You have signed up successfully."
+When I click link "Logout"
+Given I am on "users/sign_in"
+And have added email "admin@coursiz.herokuapp.com" 
+And have added password "Admin.coursiz!"
+And I have pressed "Sign in"
+And I should see "Signed in successfully."
+When I click link "Admin"
+When I click link "Delete user"
+
+
+
 Scenario: Add New Category 
 
 Given I am on "users/sign_in"

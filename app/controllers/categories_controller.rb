@@ -15,24 +15,21 @@ helper_method :sort_column, :sort_direction
 
   def new
     redirect_to root_path unless can? :admin, :all
-    @cat = Category.new
+    redirect_to categories_manage_path
   end
 
   def create
     redirect_to root_path unless can? :admin, :all
     @real = params[:category]
     @name = Category.validator(params[:category])
-    if Category.find_by_name(@name).nil?
-      flash[:warning] = "Category can't be blank!"
-      redirect_to categories_manage_path and return
-    end
-    if !Category.find_by_name(@name).blank?
-      flash[:warning] = "#{@real[:name]} already exists!"
-      redirect_to categories_manage_path and return
+    @cat = Category.new(:name => @name)
+    if !@cat.valid?
+      @cat.save
+      redirect_to categories_manage_path(:errors => @cat.errors.messages) and return
     else
       Category.create!("name" => "#{@name}", "real_name" => "#{@real[:name]}")
       flash[:notice] = "#{@real[:name]} was added successfully!"
-      redirect_to root_path
+      redirect_to request.referer
     end
   end
 
@@ -41,14 +38,15 @@ helper_method :sort_column, :sort_direction
     redirect_to root_path unless can? :admin, :all
     @cat = Category.new
     @quiz = Quiz.new
-    if params[:errors].blank?
-      @quiz = Quiz.new
-    else
-      @quiz = Quiz.new
+    if !params[:errors].blank?
       params[:errors].each_pair do |key,val|
-      @quiz.errors.add(key,"#{val}")
+        if key.eql? "name"
+          @cat.errors.add(key,"#{val}")
+        else
+          @quiz.errors.add(key,"#{val}")
+        end
+      end
     end
-  end
 end
 
   private

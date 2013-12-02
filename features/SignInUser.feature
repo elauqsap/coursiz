@@ -47,3 +47,24 @@ And I have pressed "Sign in"
 Then I should be directed to "users/sign_in"
 And I should see "Invalid email or password."
 
+Scenario: Forget Password
+Given I am on "users/sign_in"
+And I click link "Forgot your password?"
+And have added email "gunnar-mills@uiowa.edu" 
+And I have pressed "Send me reset password instructions"
+Then I should see "You will receive an email with instructions about how to reset your password in a few minutes."
+
+Scenario: Forget Password without email
+Given I am on "users/sign_in"
+And I click link "Forgot your password?"
+And I have pressed "Send me reset password instructions"
+Then I should see "error prohibited"
+
+
+Scenario: Forget Password with email that does not exist
+Given I am on "users/sign_in"
+And I click link "Forgot your password?"
+And have added email "kjhfksljh.kjhslksfh@kjlhskljfsh.hjk"
+And I have pressed "Send me reset password instructions"
+Then I should see "error prohibited"
+

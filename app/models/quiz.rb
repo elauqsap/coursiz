@@ -10,9 +10,21 @@ class Quiz < ActiveRecord::Base
     if @cat.nil?
       return Hash.new
     end
+	if params[:difficulty].eql? 'Beginning'
+		params[:difficulty]=1
+	elsif params[:difficulty].eql? 'Middle'
+		params[:difficulty]=2
+	else 
+		params[:difficulty]=3
+	end 
+
+	
   	params[:category_id] = @cat.id
-  	puts params[:category_id]
   	return params
+  end
+
+def self.progresses
+    %w(Beginning Middle End)
   end
 
 end

@@ -16,14 +16,7 @@ before_filter :authenticate_user!
 
   def new
     redirect_to root_path unless can? :admin, :all
-    if params[:errors].blank?
-      @quiz = Quiz.new
-    else
-      @quiz = Quiz.new
-      params[:errors].each_pair do |key,val|
-        @quiz.errors.add(key,"#{val}")
-      end 
-    end
+    redirect_to categories_manage_path
   end
 
   def create
@@ -35,8 +28,8 @@ before_filter :authenticate_user!
       redirect_to categories_manage_path(:errors => @quiz.errors.messages) and return
     else
       Quiz.create!(@params)
-      flash[:notice] = "The quiz was successfully created!"
-      redirect_to root_path
+      flash[:notice] = "The question was successfully created!"
+      redirect_to request.referer
     end
   end
 end

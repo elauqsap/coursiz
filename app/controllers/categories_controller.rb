@@ -1,13 +1,16 @@
 class CategoriesController < ApplicationController
 protect_from_forgery
 before_filter :authenticate_user!
+helper_method :sort_column, :sort_direction
 
 	def index
-    @cat = Category.all
+    # @cat = Category.all
+    @cat = Category.order(sort_column + " " + sort_direction)
   end
 
 	def show
     @cat = Category.find_by_name(params[:id])
+    render :json => @cat if request.xhr?
   end
 
   def new
@@ -25,6 +28,17 @@ before_filter :authenticate_user!
       flash[:info] = "#{@cat[:name]} was added successfully!"
       redirect_to root_path
     end
+  end
+
+
+  private
+  
+  def sort_column
+    Category.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end

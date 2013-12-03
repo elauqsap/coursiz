@@ -10,7 +10,8 @@ helper_method :sort_column, :sort_direction
 
 	def show
     @cat = Category.find_by_name(params[:id])
-    render :json => @cat if request.xhr?
+    @catQuizzes = @cat.quizzes
+    render :json => @catQuizzes if request.xhr?
   end
 
   def new

@@ -5,9 +5,22 @@
         </div>
       <div class="span10">
         <div class="well">
-          <p>Default show path
-          <p>category: <%= @cat.name%></p>
-          <p>ID number: <%=@cat.id%></p>
+          <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th><%= sortable "quiz number" %></th>
+                  <th><%= sortable "created_at", "created" %></th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @cat.quizzes.each do |cat| %>
+                <tr>
+                  <td id="<%= cat.id %>"><a href="quizzes/<%= cat.id%>"><%= cat.id %></a></td>
+                  <td><%= cat.created_at %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
       </div>
       </div>
     </div>

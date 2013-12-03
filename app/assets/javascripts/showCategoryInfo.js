@@ -1,22 +1,21 @@
 var CategoryPopup = {
   setup: function() {
-    // add hidden 'div' to end of page to display popup:
-    var popupDiv = $('<div id="categoryInfo"></div>');
-    popupDiv.hide().appendTo($('body'));
+
     $(document).on('click', '#category', CategoryPopup.getCategoryInfo);
-    // $(document).on('click', '#category', CategoryPopup.toggleCategoryInfo);
-    // $("category").click(CategoryPopup.getMovieInfo)
+    $(document).on('click', '#quizSelection', CategoryPopup.goToQuiz);
   }
 
   ,getCategoryInfo: function() {
 
-        var address = "categories/" + $(this).attr('class');
-        console.log("address is: "+address);
+        var category = $(this).attr('class');
+        var address = "categories/" + category;
 
           $.ajax({type: 'GET',
                   dataType: 'json',
                   url: address,
-                  success: CategoryPopup.showCategoryInfo,
+                  success: function(jsonData){
+                      CategoryPopup.showCategoryInfo(jsonData,category)
+                  },
                   timeout: 5000,
                   error: function(xhrObj, textStatus, exception) {alert("exception");}
                    // 'timeout' and 'error' functions omitted for brevity
@@ -24,9 +23,9 @@ var CategoryPopup = {
     return(false);
 
   }
-  ,showCategoryInfo: function(jsonData, requestStatus, xhrObject) {
+  ,showCategoryInfo: function(jsonData, categoryName) {
 
-    var categoryName = jsonData.name;
+
 
     if( $('#'+categoryName).children().length > 1) {
 
@@ -35,12 +34,12 @@ var CategoryPopup = {
     }
     else {
 
-      var quizData = "<div class='well' id="+jsonData.name+"Quiz>"+
-        "<table class='table table-condensed'>"+
+      var quizData = "<div class='well' id="+categoryName+"Quiz>"+
+        "<table class='table table-condensed' id="+categoryName+"Table>"+
             '<thead>'+
               '<tr>'+
-                '<th>y</th>'+
-                '<th>"x"</th>'+
+                '<th>Quiz Number</th>'+
+                '<th>Created</th>'+
               '</tr>'+
             '</thead>'+
             '<tbody>'+
@@ -48,39 +47,37 @@ var CategoryPopup = {
           '</table>'+
       "</div>";
 
-      console.log(jsonData);
+      $('#'+categoryName).append(quizData);
 
 
-      $('#'+jsonData.name).append(quizData);
 
+       for(var i=0;i<jsonData.length;i++){
+          var quizNumber = i+1;
+           $("#"+categoryName+ "Table tbody").append(
+               "<tr>"+
+                   "<td id='quizSelection' class="+categoryName+">"+jsonData[i].id+"</td>"+
+                   "<td>"+jsonData[i].created_at+"</td>"+
+               "</tr>");
+       }
 
     }
-
-
 
     return(false);  // prevent default link action
   }
-  ,hideCategoryInfo: function() {
-    $('.quizBox').hide();
-    return(false);
-  }
-
-  ,toggleCategoryInfo: function() {
-    var individualCat = $(this).attr('class');
-
-    if( $('#'+individualCat).children().length > 0) {
-
-      $('#'+individualCat+"Quiz").toggle();
-
-    }
-    else {
-
-      CategoryPopup.showCategoryInfo(individualCat);
 
 
-    }
+  ,goToQuiz: function() {
 
+    var quizCat = $(this).attr('class');
+    var quizId = $(this).html();
+
+    var nextLocation = "/categories/"+quizCat+"/quizzes/"+quizId;
+
+    window.location = nextLocation;
 
   }
+
+
+
 };
 $(CategoryPopup.setup);

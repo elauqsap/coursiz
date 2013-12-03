@@ -7,8 +7,8 @@ before_filter :authenticate_user!
   end
 
 	def show
-    @quiz = Quiz.find_by_name(params[:id]) || ""
-    if @quiz.empty?
+    @quiz = Quiz.find_by_id(params[:id]) || ""
+    if @quiz.blank?
       flash[:warning] = "The quiz requested does not exist"
       redirect_to root_path # change later
     end

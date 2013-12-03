@@ -15,20 +15,23 @@ ActiveRecord::Schema.define(:version => 20131115201749) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
+    t.string   "real_name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "quizzes", :force => true do |t|
     t.integer  "category_id"
+    t.string   "category_name"
     t.integer  "difficulty"
-    t.string   "question"
-    t.string   "answer"
-    t.string   "false_1"
-    t.string   "false_2"
-    t.string   "false_3"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "question_number"
+    t.text     "question"
+    t.text     "answer"
+    t.text     "false_1"
+    t.text     "false_2"
+    t.text     "false_3"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "roles", :force => true do |t|

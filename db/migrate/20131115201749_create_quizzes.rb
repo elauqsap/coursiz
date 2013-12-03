@@ -2,7 +2,9 @@ class CreateQuizzes < ActiveRecord::Migration
   def change
     create_table :quizzes do |t|
     	t.references 	:category
-    	t.integer 		:difficulty
+        t.string        :category_name
+        t.integer       :difficulty
+    	t.integer 		:question_number
     	t.text		    :question
     	t.text		    :answer
     	t.text		    :false_1

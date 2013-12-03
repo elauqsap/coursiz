@@ -7,11 +7,55 @@ before_filter :authenticate_user!
   end
 
 	def show
-    @quiz = Quiz.find_by_id(params[:id]) || ""
-    if @quiz.blank?
+
+    if params[:q].nil?
+      # if no parameter is given, default to the first question
+      params[:q] = 1
+
+    else
+
+      params[:q] = params[:q].to_i
+
+    end
+
+    @chosenQuizNumber = ""
+
+    puts params[:id]
+
+    # get all quizzes from a certain difficulty
+    @quizObject = Quiz.where(:difficulty => "#{params[:id]}")
+    @q2 = @quizObject.where(:category_name => "#{params[:category_id]}")
+
+      @q2.find_each do |q|
+
+      if q.question_number == params[:q]
+
+        @chosenQuizNumber = q
+        
+      end
+
+    end
+
+
+    if @chosenQuizNumber.class == String
       flash[:warning] = "The quiz requested does not exist"
       redirect_to root_path # change later
+
+    else
+
+      # may need a better way of randomizing the answers
+      questionArray = ["#{@chosenQuizNumber.false_1}","#{@chosenQuizNumber.false_2}","#{@chosenQuizNumber.false_3}","#{@chosenQuizNumber.answer}"]
+      questionArray.shuffle!
+
+      @option1 = questionArray[0]
+      @option2 = questionArray[1]
+      @option3 = questionArray[2]
+      @option4 = questionArray[3]
+
+
     end
+
+
   end
 
   def new
@@ -32,4 +76,21 @@ before_filter :authenticate_user!
       redirect_to request.referer
     end
   end
+
+
+def check_answer
+
+convert = (params[:quiz_number]).to_i
+next_question = convert + 1
+
+flash[:notice] = "That was either right or wrong!!"
+redirect_to category_quiz_path(:category_id => params[:quiz_category], :id=> params[:quiz_difficulty], :q => next_question)
+
+
+
+
+end
+
+
+
 end

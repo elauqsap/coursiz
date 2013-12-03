@@ -17,7 +17,7 @@ var CategoryPopup = {
                       CategoryPopup.showCategoryInfo(jsonData,category)
                   },
                   timeout: 5000,
-                  error: function(xhrObj, textStatus, exception) {alert("exception");}
+                  error: function(xhrObj, textStatus, exception) {}
                    // 'timeout' and 'error' functions omitted for brevity
                 });
     return(false);
@@ -38,7 +38,7 @@ var CategoryPopup = {
         "<table class='table table-condensed' id="+categoryName+"Table>"+
             '<thead>'+
               '<tr>'+
-                '<th>Quiz Number</th>'+
+                '<th>Quiz Difficulty</th>'+
                 '<th>Created</th>'+
               '</tr>'+
             '</thead>'+
@@ -49,15 +49,23 @@ var CategoryPopup = {
 
       $('#'+categoryName).append(quizData);
 
+        var dataArray = new Array();
 
 
        for(var i=0;i<jsonData.length;i++){
-          var quizNumber = i+1;
-           $("#"+categoryName+ "Table tbody").append(
-               "<tr>"+
-                   "<td id='quizSelection' class="+categoryName+">"+jsonData[i].id+"</td>"+
-                   "<td>"+jsonData[i].created_at+"</td>"+
-               "</tr>");
+          if($.inArray(jsonData[i].difficulty, dataArray) == -1){
+              var difficulty = jsonData[i].difficulty;
+
+              dataArray.push(difficulty);
+              $("#"+categoryName+ "Table tbody").append(
+                  "<tr>"+
+                      "<td id='quizSelection' class="+categoryName+">"+jsonData[i].difficulty+"</td>"+
+                      "<td>"+jsonData[i].created_at+"</td>"+
+                  "</tr>");
+
+          }
+
+
        }
 
     }

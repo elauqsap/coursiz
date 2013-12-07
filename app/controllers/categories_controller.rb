@@ -11,6 +11,7 @@ helper_method :sort_column, :sort_direction
 	def show
     @cat = Category.find_by_name(params[:id])
     @catQuizzes = @cat.quizzes
+    @cat2 = @catQuizzes.pluck(:difficulty).uniq
     render :json => @catQuizzes if request.xhr?
   end
 

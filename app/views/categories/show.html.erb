@@ -9,14 +9,12 @@
               <thead>
                 <tr>
                   <th><%= sortable "quiz number" %></th>
-                  <th><%= sortable "created_at", "created" %></th>
                 </tr>
               </thead>
               <tbody>
-              <% @cat.quizzes.each do |cat| %>
+              <% @cat2.each do |cat| %>
                 <tr>
-                  <td id="<%= cat.id %>"><a href="quizzes/<%= cat.id%>"><%= cat.id %></a></td>
-                  <td><%= cat.created_at %></td>
+                  <td id="<%= cat %>"><a href="quizzes/<%= cat%>"><%= cat %></a></td>
                 </tr>
               <% end %>
               </tbody>

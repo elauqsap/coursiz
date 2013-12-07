@@ -1,8 +1,17 @@
 var CategoryPopup = {
   setup: function() {
-
     $(document).on('click', '#category', CategoryPopup.getCategoryInfo);
     $(document).on('click', '#quizSelection', CategoryPopup.goToQuiz);
+
+    var expandAll = '<div class="btn-group">'+
+                      '<button class="btn">Expand All</button>'
+                    "</div>";
+
+    $('.expandDiv').html(expandAll);
+
+    $(document).on('click', '.expandDiv', CategoryPopup.expandAllCategories);
+
+
   }
 
   ,getCategoryInfo: function() {
@@ -34,7 +43,7 @@ var CategoryPopup = {
     }
     else {
 
-      var quizData = "<div class='well' id="+categoryName+"Quiz>"+
+      var quizData = "<div class='well animated fadeInDown' id="+categoryName+"Quiz>"+
         "<table class='table table-condensed' id="+categoryName+"Table>"+
             '<thead>'+
               '<tr>'+
@@ -82,6 +91,22 @@ var CategoryPopup = {
     var nextLocation = "/categories/"+quizCat+"/quizzes/"+quizId;
 
     window.location = nextLocation;
+
+  }
+
+
+  ,expandAllCategories: function() {
+
+    $('#category').each(function() {
+
+      console.log($(this));
+
+      this.trigger("click");
+
+
+    });
+
+
 
   }
 

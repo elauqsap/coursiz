@@ -8,7 +8,8 @@
           <div class="btn-group" id="orderButtons">
           </div>
         </div>
-          <table class="table table-condensed">
+        <div style="position:relative; left:500px;" class="expandDiv"></div>
+          <table class="table table-condensed animated fadeIn">
               <thead>
                 <tr>
                   <th><%= sortable "name" %></th>
@@ -18,7 +19,7 @@
               <tbody>
               <% @cat.each do |cat| %>
                 <tr id="category" class="<%= cat.name%>" >
-                  <td id="<%= cat.name %>"><a href="categories/<%= cat.name%>"><%= cat.name %></a></td>
+                  <td id="<%= cat.name %>"><a href="categories/<%= cat.name%>"><i class="icon-chevron-right"></i>  <%= cat.name %></a></td>
                   <td><%= cat.created_at %></td>
                 </tr>
               <% end %>

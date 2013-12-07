@@ -1,0 +1,45 @@
+<div class="container" id="mainNav">
+<div class="row-fluid">
+  <div class="span2">
+    <%= render 'layouts/sidenav' %>
+  </div>
+<div class="span8">
+<div class="well">
+
+<h3>This is quiz <%= @chosenQuizNumber.difficulty%> question number <%= @chosenQuizNumber.question_number%>
+
+<p>Question: <%= @chosenQuizNumber.question%>
+
+<br>
+
+<%= form_tag(check_answer_path) do %>
+
+	<div>
+	<%= radio_button_tag(:answer, "#{@option2}") %>
+	<%= label_tag(:answer1, "#{@option1}") %>
+	</div>
+
+	<div>
+	<%= radio_button_tag(:answer, "#{@option2}") %>
+	<%= label_tag(:answer2, "#{@option2}") %>
+	</div>
+
+	<div>
+	<%= radio_button_tag(:answer, "#{@option2}") %>
+	<%= label_tag(:answer3, "#{@option3}") %>
+	</div>
+
+	<div>
+	<%= radio_button_tag(:answer, "#{@option2}") %>
+	<%= label_tag(:answer3, "#{@option4}") %>
+	</div>
+
+<%= hidden_field_tag :quiz_number, "#{@chosenQuizNumber.question_number}" %>
+<%= hidden_field_tag :quiz_difficulty, "#{@chosenQuizNumber.difficulty}" %>
+<%= hidden_field_tag :quiz_category, "#{@chosenQuizNumber.category_name}" %>
+<%= submit_tag("submit") %>
+<% end %>
+
+</div>
+</div>
+</div>

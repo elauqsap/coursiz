@@ -22,13 +22,9 @@ class Quiz < ActiveRecord::Base
     # @RecientQuiz1 = (Quiz.find_by_category_id(@cat.id) 
     #   @r1 = @RecientQuiz1.
     #   @r2 = @RecientQuiz1.find(:last,:question_number)
-
     @r1 = Quiz.where(:category_name => params[:category_id]) || ""
-
     @r2 = @r1.where(:difficulty => params[:difficulty]) || ""
-
     @r3 = @r2.find(:last,:question_number) || ""
-
 
     if @r3.blank?
 
@@ -36,13 +32,9 @@ class Quiz < ActiveRecord::Base
 
     else
 
-
-
     @quizNumber = @r3.question_number + 1
 
   end
-
-
 
     params[:question_number] = @quizNumber
   	params[:category_id] = @cat.id

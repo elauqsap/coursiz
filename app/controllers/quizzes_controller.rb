@@ -77,74 +77,22 @@ before_filter :authenticate_user!
     end
   end
 
-
-<<<<<<< HEAD
   def check_answer
-
-    converted_number = (params[:quiz_number]).to_i
-
-    @check1 = Quiz.where(:category_name => params[:quiz_category]) || ""
-    @check2 = @check1.where(:difficulty => params[:quiz_difficulty]) || ""
-    @check3 = @check2.find(:last,:question_number) || ""
-
-    if @check3.question_number == converted_number
+    @question_number = (params[:quiz_number]).to_i
+    @count = Quiz.where(:category_name => "#{params[:quiz_category]}").where(:difficulty => "#{params[:quiz_difficulty]}").count || 0
+    session[:answers][@question_number] = "#{params[:answer]}"
+    if @count == @question_number
       flash[:notice] = "Quiz is over!"
       redirect_to quiz_results_path
     else
-    cookie_record = {:q_number => params[:quiz_number], :q_answer => params[:answer]}
-
-      if cookies[:answer_cookie].blank?
-          cookies[:answer_cookie] = { 
-          :value => cookie_record.to_json, 
-          :expires => 4.years.from_now
-        }    
-      end
-
-    next_question = converted_number + 1
-    flash[:notice] = "That was either right or wrong!!"
-    redirect_to category_quiz_path(:category_id => params[:quiz_category], :id=> params[:quiz_difficulty], :q => next_question)
-    
+      @question_number += 1
+      flash[:notice] = "That was either right or wrong!!"
+      redirect_to category_quiz_path(:category_id => params[:quiz_category], :id=> params[:quiz_difficulty], :q => @question_number)
     end
-
   end
 
   def results
-=======
-def check_answer
-
-quiz_number = (params[:quiz_number]).to_i
-
-@count = Quiz.where(:category_name => "#{params[:quiz_category]}").where(:difficulty => "#{params[:quiz_difficulty]}").count || 0
-
-session[:answers][quiz_number] = "#{params[:answer]}"
-
-    if @count == quiz_number
-
-      flash[:notice] = "Quiz is over!"
-      redirect_to quiz_results_path
-
-    else
-
-        next_question = quiz_number + 1
-        flash[:notice] = "That was either right or wrong!!"
-        redirect_to category_quiz_path(:category_id => params[:quiz_category], :id=> params[:quiz_difficulty], :q => next_question)
-
-
-    end
-
-end
-
-
-
-def results
-
-
-  @results = session[:answers]
->>>>>>> master
-
-    # blah = JSON.parse(cookies[:answer_cookie])
-    # puts "#{blah}"
-
+    @results = session[:answers]
   end
 
 end

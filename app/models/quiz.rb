@@ -19,24 +19,10 @@ class Quiz < ActiveRecord::Base
 	end 
 
     # find the most recient quiz based on the category, and increment the number count
-    # @RecientQuiz1 = (Quiz.find_by_category_id(@cat.id) 
-    #   @r1 = @RecientQuiz1.
-    #   @r2 = @RecientQuiz1.find(:last,:question_number)
-    @r1 = Quiz.where(:category_name => params[:category_id]) || ""
-    @r2 = @r1.where(:difficulty => params[:difficulty]) || ""
-    @r3 = @r2.find(:last,:question_number) || ""
+   
+    @count += 1
 
-    if @r3.blank?
-
-      @quizNumber =1
-
-    else
-
-    @quizNumber = @r3.question_number + 1
-
-  end
-
-    params[:question_number] = @quizNumber
+    params[:question_number] = @count
   	params[:category_id] = @cat.id
     params[:category_name] = @cat.name
   	return params
@@ -45,5 +31,11 @@ class Quiz < ActiveRecord::Base
 def self.progresses
     %w(Beginning Middle End)
   end
+
+end
+
+def count_return
+
+ return  Quiz.where(:category_name => "#{@cat.name}").where(:difficulty => "#{params[:difficulty]}").count || 0
 
 end

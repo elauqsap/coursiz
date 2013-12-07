@@ -9,7 +9,22 @@ before_filter :authenticate_user!
 	def show
 
     if params[:q].nil?
-      # if no parameter is given, default to the first question
+
+      session[:answers] = []
+
+      # number1 = Quiz.where(:category_name => params[:category_id]) || ""
+      # number2 = number1.where(:difficulty => params[:id]) || ""
+      # number3 = number2.find(:last,:question_number) || ""
+
+      # count = number3.question_number.to_i
+
+      # randomized_questions = ('1'.."#{@count}").to_a.shuffle
+
+      # ten_randomized_questions = randomized_questions.take(10)
+
+
+
+      # render :start
       params[:q] = 1
 
     else
@@ -19,8 +34,6 @@ before_filter :authenticate_user!
     end
 
     @chosenQuizNumber = ""
-
-    puts params[:id]
 
     # get all quizzes from a certain difficulty
     @quizObject = Quiz.where(:difficulty => "#{params[:id]}")
@@ -36,10 +49,9 @@ before_filter :authenticate_user!
 
     end
 
-
     if @chosenQuizNumber.class == String
       flash[:warning] = "The quiz requested does not exist"
-      redirect_to root_path # change later
+      # redirect_to root_path # change later
 
     else
 
@@ -80,41 +92,25 @@ before_filter :authenticate_user!
 
 def check_answer
 
-converted_number = (params[:quiz_number]).to_i
+quiz_number = (params[:quiz_number]).to_i
 
-@check1 = Quiz.where(:category_name => params[:quiz_category]) || ""
-@check2 = @check1.where(:difficulty => params[:quiz_difficulty]) || ""
-@check3 = @check2.find(:last,:question_number) || ""
+@count = Quiz.where(:category_name => "#{params[:quiz_category]}").where(:difficulty => "#{params[:quiz_difficulty]}").count || 0
 
-if @check3.question_number == converted_number
+session[:answers][quiz_number] = "#{params[:answer]}"
 
-  flash[:notice] = "Quiz is over!"
-  redirect_to quiz_results_path
+    if @count == quiz_number
 
-else
+      flash[:notice] = "Quiz is over!"
+      redirect_to quiz_results_path
 
-  cookie_record = {:q_number => params[:quiz_number], :q_answer => params[:answer]}
+    else
 
-  if cookies[:answer_cookie].blank?
-      cookies[:answer_cookie] = { 
-      :value => cookie_record.to_json, 
-      :expires => 4.years.from_now
-    }
-
-  else
-
-    
-  end
+        next_question = quiz_number + 1
+        flash[:notice] = "That was either right or wrong!!"
+        redirect_to category_quiz_path(:category_id => params[:quiz_category], :id=> params[:quiz_difficulty], :q => next_question)
 
 
-
-
-  next_question = converted_number + 1
-  flash[:notice] = "That was either right or wrong!!"
-  redirect_to category_quiz_path(:category_id => params[:quiz_category], :id=> params[:quiz_difficulty], :q => next_question)
-
-end
-
+    end
 
 end
 
@@ -123,7 +119,7 @@ end
 def results
 
 
-
+  @results = session[:answers]
 
 end
 

@@ -19,7 +19,7 @@
               <tbody>
               <% @cat.each do |cat| %>
                 <tr id="category" class="<%= cat.name%>" >
-                  <td id="<%= cat.name %>"><a href="categories/<%= cat.name%>"><i class="icon-chevron-right"></i>  <%= cat.name %></a></td>
+                  <td id="<%= cat.name %>"><a href="categories/<%= cat.name%>"><i class="icon-chevron-right"></i>  <%= cat.real_name %></a></td>
                   <td><%= cat.created_at %></td>
                 </tr>
               <% end %>

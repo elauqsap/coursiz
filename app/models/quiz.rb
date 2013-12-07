@@ -10,39 +10,24 @@ class Quiz < ActiveRecord::Base
     if @cat.nil?
       return Hash.new
     end
-	if params[:difficulty].eql? 'Beginning'
-		params[:difficulty]=1
-	elsif params[:difficulty].eql? 'Middle'
-		params[:difficulty]=2
-	else 
-		params[:difficulty]=3
-	end 
+  	if params[:difficulty].eql? 'Beginning'
+  		params[:difficulty] = 1
+  	elsif params[:difficulty].eql? 'Middle'
+  		params[:difficulty] = 2
+  	elsif params[:difficulty].eql? 'End'
+  		params[:difficulty] = 3
+  	end 
 
-    # find the most recient quiz based on the category, and increment the number count
-    # @RecientQuiz1 = (Quiz.find_by_category_id(@cat.id) 
-    #   @r1 = @RecientQuiz1.
-    #   @r2 = @RecientQuiz1.find(:last,:question_number)
-    @r1 = Quiz.where(:category_name => params[:category_id]) || ""
-    @r2 = @r1.where(:difficulty => params[:difficulty]) || ""
-    @r3 = @r2.find(:last,:question_number) || ""
-
-    if @r3.blank?
-
-      @quizNumber =1
-
-    else
-
-    @quizNumber = @r3.question_number + 1
-
-  end
-
-    params[:question_number] = @quizNumber
+    @count = Quiz.where(:category_name => "#{@cat.name}").where(:difficulty => "#{params[:difficulty]}").count || 0
+    @count += 1
+    
+    params[:question_number] = @count
   	params[:category_id] = @cat.id
     params[:category_name] = @cat.name
   	return params
   end
 
-def self.progresses
+  def self.progresses
     %w(Beginning Middle End)
   end
 

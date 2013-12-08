@@ -17,11 +17,15 @@ user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => EN
 puts 'user: ' << user.name
 user.add_role :admin
 
-puts 'calculus Questions'
+puts 'Now creating categories'
 
 Category.create( :real_name => 'Calculus', :name => 'calculus')
 
 Category.create( :real_name => 'statistics', :name => 'statistics')
+
+Category.create( :real_name => 'EPS', :name => 'eps')
+
+puts 'Calculus I Questions'
 
 Quiz.create(:category_name => 'calculus',
 :category_id => 1,  :difficulty => 1, :question => 'Derivative of 3x^2 +2', :answer => '6x', :false_1 => '3x + 2', :false_2 => '8', :false_3 => '3x^2', :question_number => 1)  
@@ -769,6 +773,111 @@ Quiz.create(
 :false_2 => 'Analyze sample data', 
 :false_3 => 'Interpret results',
 :question_number => 5)
+
+puts 'EPSII Questions'
+
+Quiz.create(
+:category_name => 'eps', 
+:category_id => 3,
+:difficulty => 1, 
+:question => 'Which of the following are true about the following C statements?
+int i, j;
+float x;', 
+:answer => '3 memory locations are being reserved, 1 floating point, and 2 integers.', 
+:false_1 => '2 memory locations are being reserved.',
+:false_2 => '2 memory locations are being reserved', 
+:false_3 => 'Variables i and j must contain the same value because they are declared in the same statement.',
+:question_number => 1)
+
+Quiz.create(
+:category_name => 'eps', 
+:category_id => 3,
+:difficulty => 1, 
+:question => 'What value is contained in the variable y at the end of execution of the following statements?
+int x = 7; int y;
+x = 7 + x;
+y = x + y;', 
+:answer => 'Cant be determined', 
+:false_1 => '14',
+:false_2 => '21', 
+:false_3 => '7',
+:question_number => 2)
+
+Quiz.create(
+:category_name => 'eps', 
+:category_id => 3,
+:difficulty => 1, 
+:question => 'Which statement is false about the following command?
+gcc myProgram.c -o myProgram.exe
+[Note: gcc -o myProgram.exe myProgram.c is the same]', 
+:answer => 'The executable myProgram will run as a result of this command', 
+:false_1 => 'The source program myProgram.c is being compiled',
+:false_2 => 'An executable file called myProgram.exe will be created if no syntax errors are found in myProgram.c', 
+:false_3 => 'Any syntax errors in myProgram.c will be reported to the user',
+:question_number => 3)
+
+Quiz.create(
+:category_name => 'eps', 
+:category_id => 3,
+:difficulty => 1, 
+:question => 'The KDevelop IDE for C/C++ environment used in this course is:', 
+:answer => 'A sophisticated graphical interface to help edit, compile and test programs.', 
+:false_1 => 'A program compiler',
+:false_2 => 'A C program debugger', 
+:false_3 => 'A new kind of nuclear powered food processor.',
+:question_number => 4)
+
+Quiz.create(
+:category_name => 'eps', 
+:category_id => 3,
+:difficulty => 1, 
+:question => 'Which  of    the    following    expressions    are    true    for    the    initial    conditions    shown?    
+     
+int i=3, j=4;
+float z=3.4;
+', 
+:answer => '(i + j) > z', 
+:false_1 => 'i > z',
+:false_2 => '(2 * (i + j)) < z', 
+:false_3 => '(2*z) <  (j-i)',
+:question_number => 5)
+
+Quiz.create(
+:category_name => 'eps', 
+:category_id => 3,
+:difficulty => 1, 
+:question => 'Which statement is false', 
+:answer => 'The    statements    in    an    if    statement    must    be    indented.    ', 
+:false_1 => 'Whitespace   characters   such   as   tabs,   newlines   and   spaces   are   generally     ignored   by     the   C    
+compiler.  ',
+:false_2 => 'Placing       a       blank       line       before       and       after       every       control       structure       can       improve       program  
+readability.  
+', 
+:false_3 => 'There    can    be    (but    should    not    be)    more    than    one    statement    per    line.    ',
+:question_number => 6)
+
+
+Quiz.create(
+:category_name => 'eps', 
+:category_id => 3,
+:difficulty => 1, 
+:question => 'Which of the following is a bad programming practice', 
+:answer => 'using floating-point values as the counter in counter-controlled repetition', 
+:false_1 => 'indenting the statements in the body  of each control structure',
+:false_2 => 'using more than  two levels of nesting', 
+:false_3 => 'placing vertical spacing above and below control structures     ',
+:question_number => 7)
+
+Quiz.create(
+:category_name => 'eps', 
+:category_id => 3,
+:difficulty => 1, 
+:question => 'When a number gets assigned to a variable that already has a value ', 
+:answer => 'the new number overwrites the previous value at that memory location', 
+:false_1 => 'the new number gets assigned to a neighboring memory location',
+:false_2 => 'the computer issues an erro', 
+:false_3 => 'the new value is destroyed and the old value remains',
+:question_number => 8)
 
 puts 'successfully put Questions'
 

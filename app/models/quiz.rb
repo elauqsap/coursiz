@@ -60,8 +60,8 @@ class Quiz < ActiveRecord::Base
     end
   end
 
-  def self.get_question(params, questions)
-    if params[:q] == ((@SIZE+1) - questions.size)
+  def self.get_question(params, questions, size)
+    if params[:q] == ((size+1) - questions.size)
       @question_number = questions.pop
     end
     return Quiz.where("difficulty = ? AND category_name = ? AND question_number = ?", params[:id], params[:category_id], @question_number)[0]

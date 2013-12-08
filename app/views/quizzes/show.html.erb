@@ -15,7 +15,7 @@
 <%= form_tag(check_answer_path) do %>
 
 	<div>
-	<%= radio_button_tag(:answer, "#{@option1}") %>
+	<%= radio_button_tag(:answer, "#{@option1}", :checked => true) %>
 	<%= label_tag(:answer1, "#{@option1}") %>
 	</div>
 

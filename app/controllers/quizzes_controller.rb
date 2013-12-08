@@ -17,7 +17,7 @@ before_filter :authenticate_user!
 
     # get all quizzes from a certain difficulty
     @quizzes_by_level = Quiz.where(:difficulty => "#{params[:id]}").where(:category_name => "#{params[:category_id]}") || Quiz.new
-
+    puts @quizzes_by_level
     @quizzes_by_level.find_each do |q|
       if q.question_number == params[:q]
         @display_question = q || nil
@@ -71,7 +71,7 @@ before_filter :authenticate_user!
   end
 
   def results
-    @results = session[:answers].compact!
+    @results = session[:answers].compact
     if @results.nil?
       flash[:notice] = "The quiz session is no longer valid!"
       redirect_to root_path

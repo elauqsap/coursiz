@@ -9,7 +9,7 @@ And have added password conformation "Admin.coursiz!"
 And selected year "Senior"
 And selected major "Computer"
 And I have pressed "Sign up"
-Then a new account should be created 
+Then a new user "Commander" should be created 
 And I should see "Welcome! You have signed up successfully."
 When I click link "Logout"
 When I selected id "1" Admin from the database

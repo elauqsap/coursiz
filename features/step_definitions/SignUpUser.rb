@@ -44,22 +44,17 @@ When(/^I click link "(.*?)"$/) do |link|
 end
 
 
-Then(/^a new account should be created$/) do
- 
-# pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I should be directed to "(.*?)"$/) do |pages|
- #current_path.should == "/#{pages}"
-
- #puts page
-end
-
 Then(/^I should see "(.*?)"$/) do |warning|
 
   assert page.has_content?(warning)
   
 end
+
+Then(/^a new user "(.*?)" should be created$/) do |userName|
+  
+	user = User.find_by_name(userName)
+end
+
 
 Given(/^have added current password "(.*?)"$/) do |password_current|
   

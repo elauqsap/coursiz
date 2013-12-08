@@ -5,7 +5,7 @@ class Quiz < ActiveRecord::Base
   validates_presence_of :category_id, :difficulty, :question, :answer, :false_1, :false_2, :false_3
   belongs_to :category
 
-  def self.fix_category(params)
+  def self.fix_params(params)
   	@cat = Category.find_by_real_name(params[:category_id])
     if @cat.nil?
       return Hash.new
@@ -30,6 +30,14 @@ class Quiz < ActiveRecord::Base
 
   def self.progresses
     %w(Beginning Middle End)
+  end
+
+  def self.confirm(params)
+    @check = 0
+    if params[:answer].eql? Quiz.find_by_id(params[:question_id]).answer
+      @check = 1
+    end
+    return {:id => params[:question_id], :user => params[:answer], :valid => @check }
   end
 
 end

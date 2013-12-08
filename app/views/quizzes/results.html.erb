@@ -1,12 +1,33 @@
 <div class="container" id="mainNav">
-<div class="row-fluid">
+ <div class="row-fluid">
   <div class="span2">
-    <%= render 'layouts/sidenav' %>
+   <%= render 'layouts/sidenav' %>
   </div>
   <div class="span8">
-  <div class="well">
-  	<p><%= @results %>
-    </div>
-    </div>
-</div>
+  <h3>Quiz Results </h3>
+
+    <table class="table table-bordered">
+ 	 <thead>
+      <tr>
+       <th>Answer</th>
+      </tr>
+      <tbody>
+        <% @results.each do |result| %>
+        <% if result[:valid] == 0 %>
+        <tr class="error">
+        <td id="<%= result[:user] %>"><%= result[:user] %></td>
+        <td><i class="icon-remove"></i></td>
+        <% else %>
+        <tr class="success">
+        <td id="<%= result[:user] %>"><%= result[:user] %></td>
+        <td><i class="icon-ok"></i></td>
+        <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+     </thead>
+    </table>
+
+  </div>
+ </div>
 </div>

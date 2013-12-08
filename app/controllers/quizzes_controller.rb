@@ -14,6 +14,7 @@ before_filter :authenticate_user!
     if params[:q].nil?
       session[:answers] = []
       session[:questions] = Quiz.quiz_init(params)
+      session[:size] = session[:questions].size
       params[:q] = 1
     else
       params[:q] = params[:q].to_i + 1
@@ -26,7 +27,7 @@ before_filter :authenticate_user!
     #     @display_question = q || nil
     #   end
     # end
-    @display_question = Quiz.get_question(params, session[:questions])
+    @display_question = Quiz.get_question(params, session[:questions], session[:size])
     if @display_question.nil?
       flash[:warning] = "The quiz requested does not exist"
       # redirect_to root_path # change later
@@ -62,7 +63,7 @@ before_filter :authenticate_user!
   end
 
   def check_answer
-    @question_number = 10 - session[:questions].size
+    @question_number = session[:size] - session[:questions].size
     @count = Quiz.where(:category_name => "#{params[:quiz_category]}").where(:difficulty => "#{params[:quiz_difficulty]}").count || 0
     session[:answers][@question_number] = Quiz.confirm(params)
     if session[:questions].empty?

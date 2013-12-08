@@ -4,8 +4,7 @@
           <%= render 'layouts/sidenav' %>
         </div>
       <div class="span10">
-        <div class="well">
-          <table class="table table-condensed">
+          <table class="table table-bordered">
               <thead>
                 <tr>
                   <th><%= sortable "quiz number" %></th>
@@ -14,12 +13,12 @@
               <tbody>
               <% @cat2.each do |cat| %>
                 <tr>
-                  <td id="<%= cat %>"><a href="quizzes/<%= cat%>"><%= cat %></a></td>
+                  <td id="<%= cat %>"><a href="<%= @cat.name%>/quizzes/<%= cat%>"><%= cat %></a></td>
                 </tr>
               <% end %>
               </tbody>
             </table>
-      </div>
+
       </div>
     </div>
   </div>

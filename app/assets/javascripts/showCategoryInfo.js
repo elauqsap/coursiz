@@ -7,7 +7,7 @@ var CategoryPopup = {
                       '<button class="btn">Expand All</button>'
                     "</div>";
 
-    $('.expandDiv').html(expandAll);
+    // $('.expandDiv').html(expandAll);
 
     $(document).on('click', '.expandDiv', CategoryPopup.expandAllCategories);
 
@@ -44,7 +44,7 @@ var CategoryPopup = {
     else {
 
       var quizData = "<div class='well animated fadeInDown' id="+categoryName+"Quiz>"+
-        "<table class='table table-condensed' id="+categoryName+"Table>"+
+        "<table class='table table-bordered' id="+categoryName+"Table>"+
             '<thead>'+
               '<tr>'+
                 '<th>Quiz Difficulty</th>'+

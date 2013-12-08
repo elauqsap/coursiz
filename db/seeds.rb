@@ -17,19 +17,12 @@ user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => EN
 puts 'user: ' << user.name
 user.add_role :admin
 
-<<<<<<< HEAD
 puts 'Calculus Questions'
 
 Category.create( :real_name => 'Calculus', :name => 'calculus')
 
-=======
-puts 'calculus Questions'
+Category.create( :real_name => 'Statistics', :name => 'statistics')
 
-Category.create( :real_name => 'Calculus', :name => 'calculus')
-
-Category.create( :real_name => 'statistics', :name => 'statistics')
-
->>>>>>> seedsunday
 Quiz.create(:category_name => 'calculus',
 :category_id => 1,  :difficulty => 1, :question => 'Derivative of 3x^2 +2', :answer => '6x', :false_1 => '3x + 2', :false_2 => '8', :false_3 => '3x^2', :question_number => 1)  
 
@@ -75,7 +68,6 @@ Quiz.create(:category_name => 'calculus',
 
 Quiz.create(:category_name => 'calculus',
 :category_id => 1,  :difficulty => 1, :question => 'derivative of e^-x:', :answer => '-3^(-x)*log(3)', :false_1 => '-e^-x', :false_2 => '-x+-e^-x', :false_3 => 'x+e^-x', :question_number => 12)  
-
 
 
 Quiz.create(

@@ -6,24 +6,27 @@ before_filter :authenticate_user!
     @quiz = Quiz.all
   end
 
+  def start_quiz
+  end
+
 	def show
 
     if params[:q].nil?
       session[:answers] = []
+      session[:questions] = Quiz.quiz_init(params)
       params[:q] = 1
     else
-      params[:q] = params[:q].to_i
+      params[:q] = params[:q].to_i + 1
     end
 
     # get all quizzes from a certain difficulty
-    @quizzes_by_level = Quiz.where(:difficulty => "#{params[:id]}").where(:category_name => "#{params[:category_id]}") || Quiz.new
-    puts @quizzes_by_level
-    @quizzes_by_level.find_each do |q|
-      if q.question_number == params[:q]
-        @display_question = q || nil
-      end
-    end
-
+    # @quizzes_by_level = Quiz.where(:difficulty => "#{params[:id]}").where(:category_name => "#{params[:category_id]}") || Quiz.new
+    # @quizzes_by_level.find_each do |q|
+    #   if q.question_number == params[:q]
+    #     @display_question = q || nil
+    #   end
+    # end
+    @display_question = Quiz.get_question(params, session[:questions])
     if @display_question.nil?
       flash[:warning] = "The quiz requested does not exist"
       # redirect_to root_path # change later
@@ -59,13 +62,12 @@ before_filter :authenticate_user!
   end
 
   def check_answer
-    @question_number = (params[:question_number]).to_i
+    @question_number = 10 - session[:questions].size
     @count = Quiz.where(:category_name => "#{params[:quiz_category]}").where(:difficulty => "#{params[:quiz_difficulty]}").count || 0
     session[:answers][@question_number] = Quiz.confirm(params)
-    if @count == @question_number
+    if session[:questions].empty?
       redirect_to quiz_results_path
     else
-      @question_number += 1
       redirect_to category_quiz_path(:category_id => params[:quiz_category], :id=> params[:quiz_difficulty], :q => @question_number)
     end
   end

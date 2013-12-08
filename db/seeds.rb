@@ -65,7 +65,6 @@ Quiz.create(:category_name => 'calculus',
 
 
 Quiz.create(:category_name => 'calculus',
-:category_id => 1,  :difficulty => 1, :question => 'derivative of e^-x:', :answer => '-3^(-x)*log(3)', :false_1 => '-e^-x', :false_2 => '-x+-e^-x', :false_3 => 'x+e^-x', :question_number => 12)  
 
 
 Quiz.create(

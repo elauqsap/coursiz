@@ -1,14 +1,22 @@
 <div class="container" id="mainNav">
+
 <div class="row-fluid">
+
   <div class="span2">
     <%= render 'layouts/sidenav' %>
   </div>
 <div class="span8">
-<div class="well">
+	<ul class="breadcrumb">
+	  <li><%= link_to 'Categories', categories_path %> /</li>
+	  <li><a href="/categories/<%= params[:category_id]%>"><%= params[:category_id]%></a> /</li>
+	  <li class="active"><%= params[:id]%></li>
+	</ul>
 
-<h3>This is quiz <%= @display_question.difficulty%> question number <%= @display_question.question_number%>
+<div class="hero-unit">
 
-<p>Question: <%= @display_question.question%>
+<!-- <h3>This is quiz <%= @display_question.difficulty%> question number <%= @display_question.question_number%> -->
+
+<div class="well"><h3><%= @display_question.question%></div>
 
 <br>
 

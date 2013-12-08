@@ -29,5 +29,24 @@
 	background-color: #0088cc;
 
 
+}
+
+
+@media (max-width: 1200px) {
+  
+
+  .container {
+    width: auto !important;
+  }
+
+}
+
+@media (max-width: 837px){
+
+  #headerSpan {
+    float: none !important;
+  }
+
+
 
 }

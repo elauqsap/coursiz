@@ -6,40 +6,38 @@ before_filter :authenticate_user!
     @quiz = Quiz.all
   end
 
-  def start_quiz
+  def set_session
+    session[:start_quiz] = SecureRandom.hex(32)
+    redirect_to category_quiz_path(:category_id => params[:category_id], :id=> params[:id])
   end
 
 	def show
+    if !session[:start_quiz].nil?
+      if params[:q].nil?
+        session[:answers] = []
+        session[:questions] = Quiz.quiz_init(params)
+        session[:size] = session[:questions].size
+        params[:q] = 1
+      else
+        params[:q] = params[:q].to_i + 1
+      end
 
-    if params[:q].nil?
-      session[:answers] = []
-      session[:questions] = Quiz.quiz_init(params)
-      session[:size] = session[:questions].size
-      params[:q] = 1
+      @display_question = Quiz.get_question(params, session[:questions], session[:size])
+      if @display_question.nil?
+        flash[:warning] = "The quiz requested does not exist"
+        # redirect_to root_path # change later
+      else
+        # may need a better way of randomizing the answers
+        questionArray = ["#{@display_question.false_1}","#{@display_question.false_2}","#{@display_question.false_3}","#{@display_question.answer}"]
+        questionArray.shuffle!
+
+        @option1 = questionArray[0]
+        @option2 = questionArray[1]
+        @option3 = questionArray[2]
+        @option4 = questionArray[3]
+      end
     else
-      params[:q] = params[:q].to_i + 1
-    end
-
-    # get all quizzes from a certain difficulty
-    # @quizzes_by_level = Quiz.where(:difficulty => "#{params[:id]}").where(:category_name => "#{params[:category_id]}") || Quiz.new
-    # @quizzes_by_level.find_each do |q|
-    #   if q.question_number == params[:q]
-    #     @display_question = q || nil
-    #   end
-    # end
-    @display_question = Quiz.get_question(params, session[:questions], session[:size])
-    if @display_question.nil?
-      flash[:warning] = "The quiz requested does not exist"
-      # redirect_to root_path # change later
-    else
-      # may need a better way of randomizing the answers
-      questionArray = ["#{@display_question.false_1}","#{@display_question.false_2}","#{@display_question.false_3}","#{@display_question.answer}"]
-      questionArray.shuffle!
-
-      @option1 = questionArray[0]
-      @option2 = questionArray[1]
-      @option3 = questionArray[2]
-      @option4 = questionArray[3]
+      redirect_to start_path(:id => params[:id])
     end
   end
 
@@ -67,6 +65,7 @@ before_filter :authenticate_user!
     @count = Quiz.where(:category_name => "#{params[:quiz_category]}").where(:difficulty => "#{params[:quiz_difficulty]}").count || 0
     session[:answers][@question_number] = Quiz.confirm(params)
     if session[:questions].empty?
+      session.delete(:start_quiz)
       redirect_to quiz_results_path
     else
       redirect_to category_quiz_path(:category_id => params[:quiz_category], :id=> params[:quiz_difficulty], :q => @question_number)

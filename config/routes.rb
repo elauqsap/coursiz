@@ -8,6 +8,8 @@ Coursiz::Application.routes.draw do
   get '/categories/manage', to: 'categories#manage'
   get '/categories/:category_id/quizzes/results', to: 'quizzes#results', as: 'quiz_results'
   post '/categories/:category_id/quizzes/checkanswer', to: 'quizzes#check_answer', as: 'check_answer'
+  get '/categories/:category_id/quizzes/start', to: 'quizzes#start', as: 'start'
+  get '/categories/:category_id/quizzes/set', :to=>'quizzes#set_session', as: 'set_session'
   # get '/categories/new', to: 'categories#manage'
   # get '/categories/:category_id/quizzes/new', to: 'categories#manage'
   post '/categories/quizzes', to: 'quizzes#create'

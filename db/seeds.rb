@@ -21,7 +21,7 @@ puts 'Now creating categories'
 
 Category.create( :real_name => 'Calculus', :name => 'calculus')
 
-Category.create( :real_name => 'statistics', :name => 'statistics')
+Category.create( :real_name => 'Statistics', :name => 'statistics')
 
 Category.create( :real_name => 'EPS', :name => 'eps')
 

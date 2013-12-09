@@ -1398,5 +1398,4 @@ Quiz.create(
 :false_3 => '3 and 4',
 :question_number => 15)
 
-
 puts 'successfully put Questions'

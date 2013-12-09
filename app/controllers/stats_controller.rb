@@ -8,5 +8,4 @@ class StatsController < ApplicationController
     end
   end
 
-	
 end

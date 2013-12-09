@@ -46,8 +46,15 @@ ActiveRecord::Schema.define(:version => 20131115201749) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "stats", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "users_id"
+    t.integer  "c_answers"
+    t.integer  "f_answers"
+    t.integer  "quizzes_taken"
+    t.integer  "difficulty_1"
+    t.integer  "difficulty_2"
+    t.integer  "difficulty_3"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "users", :force => true do |t|

@@ -66,7 +66,8 @@ before_filter :authenticate_user!
     session[:answers][@question_number] = Quiz.confirm(params)
     if session[:questions].empty?
       session.delete(:start_quiz)
-      redirect_to quiz_results_path
+      session[:stats] = true
+      redirect_to quiz_results_path(:difficulty => params[:quiz_difficulty])
     else
       redirect_to category_quiz_path(:category_id => params[:quiz_category], :id=> params[:quiz_difficulty], :q => @question_number)
     end
@@ -74,9 +75,15 @@ before_filter :authenticate_user!
 
   def results
     @results = session[:answers].compact
+    params[:current_user] = current_user.id
     if @results.nil?
       flash[:notice] = "The quiz session is no longer valid!"
       redirect_to root_path
+    else
+      if session[:stats]
+        session.delete(:stats)
+        Stat.results_tally(@results, params)
+      end
     end 
   end
 

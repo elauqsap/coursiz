@@ -1,14 +1,14 @@
 Feature: As a user I want to be able to edit my account
 Background: movies have been added to RottenPotatoes  
 Given I am on "users/sign_up"
-When I have added my name "Big John" 
-And have added email "gunnar-mills@uiowa.edu" 
+When I have added my name "Jack O'Neill" 
+And have added email "jack-oneill@stargatecommand.com" 
 And have added password "bigjohn1234"
 And have added password conformation "bigjohn1234" 
 And selected year "Senior"
 And selected major "Computer"
 And I have pressed "Sign up"
-Then a new account should be created 
+Then a new user "Jack O'Neill" should be created 
 And I should see "Welcome! You have signed up successfully."
 
 
@@ -22,10 +22,9 @@ And I have pressed "Update"
 Then I should see "You updated your account successfully."
 When I click link "Logout"
 Given I am on "users/sign_in"
-And have added email "gunnar-mills@uiowa.edu" 
+And have added email "jack-oneill@stargatecommand.com" 
 And have added password "smiling12"
 And I have pressed "Sign in"
-Then I should be directed to "users/sign_in"
 And I should see "Signed in successfully."
 
 Scenario: Valid email change
@@ -42,8 +41,7 @@ Given I am on "users/sign_in"
 And have added email "james-couch@uiowa.edu" 
 And have added password "bigjohn1234"
 And I have pressed "Sign in"
-Then I should be directed to "users/sign_in"
-And I should see "Signed in successfully."
+Then I should see "Signed in successfully."
 
 Scenario: Invalid current password
 Given I am on "users/edit"
@@ -82,11 +80,10 @@ And I have pressed "Update"
 Then I should see "You updated your account successfully."
 When I click link "Logout"
 Given I am on "users/sign_in"
-And have added email "gunnar-mills@uiowa.edu" 
+And have added email "jack-oneill@stargatecommand.com" 
 And have added password "bigjohn1234"
 And I have pressed "Sign in"
-Then I should be directed to "users/sign_in"
-And I should see "Signed in successfully."
+Then I should see "Signed in successfully."
 
 
 

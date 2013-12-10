@@ -1,21 +1,25 @@
 <div class="container" id="mainNav">
-<div class="row-fluid">
+<div class="row">
   <div class="span2">
     <%= render 'layouts/sidenav' %>
   </div>
-  <div class="span8">
-  <div class="well">
+  <div class="span5 offset1">
+  <div class="well">  
   	<h4>You are about to start <%= Category.find_by_name(params[:category_id]).real_name %> Quiz # <%= params[:id] %></h3> 
   <div>
     <p>Please remember the following while taking the quiz</p>
     <ul>
       <li>The material is based on your progress in the course</li>
       <li>There are 10 randomly generate questions to answer</li>
+      <li>Your answers will be graded and displayed at the end</li>
+      <li>Questions can be submitted for review at the end</li>
     </ul>
   </div>
+  <center>
   <div class="btn-group">
   <%= link_to "Start Quiz", set_session_path(:id => params[:id]), :class => "btn btn-lg btn-primary"%>
   </div>
+</center>
   </div>
   </div>
 </div>

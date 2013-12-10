@@ -4,26 +4,34 @@
    <%= render 'layouts/sidenav' %>
   </div>
   <div class="span8">
-  <h3>Quiz Results </h3>
+    <%= form_tag(check_answer_path) do %>
     <table class="table table-bordered">
  	 <thead>
       <tr>
-       <th>Answer</th>
+       <th>#</th>
+       <th>Quiz Results - Answers Submitted</th>
+       <th></th>
+       <th></th>
       </tr>
       <tbody>
         <% @results.each do |result| %>
-        <% if result[:valid] == 0 %>
-        <tr class="error">
-        <td id="<%= result[:user] %>"><%= result[:user] %></td>
-        <td><i class="icon-remove"></i></td>
-        <% else %>
-        <tr class="success">
-        <td id="<%= result[:user] %>"><%= result[:user] %></td>
-        <td><i class="icon-ok"></i></td>
-        <% end %>
+          <% if result[:valid] == 0 %>
+            <tr class="error">
+            <td><%= @results.find_index(result) + 1 %></td>
+            <td id="<%= result[:user] %>"><%= result[:user] %></td>
+            <td><i class="icon-remove"></i></td>
+            <td><%= radio_button_tag(:review, "#{@option4}") %></td>
+          <% else %>
+            <tr class="success">
+            <td><%= @results.find_index(result) + 1 %></td>
+            <td id="<%= result[:user] %>"><%= result[:user] %></td>
+            <td><i class="icon-ok"></i></td>
+            <td align="center"><%= radio_button_tag(:review, 1) %></td>
+          <% end %>
         </tr>
         <% end %>
       </tbody>
+      <% end %> 
      </thead>
     </table>
 

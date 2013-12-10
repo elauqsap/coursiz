@@ -5,8 +5,9 @@
         </div>
       <div class="span10">
         <div class="well">
-        <% @users.each do |user| %>
-          <p>User: <%=link_to user.name, user %></p>
+          <!-- render the admin view here -->
+        <% if can? :admin, User %>
+          
         <% end %>
       </div>
       </div>

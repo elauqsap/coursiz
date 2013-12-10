@@ -75,9 +75,21 @@ before_filter :authenticate_user!
   def results
     @results = session[:answers].compact
     if @results.nil?
-      flash[:notice] = "The quiz session is no longer valid!"
+      flash[:alert] = "The quiz session is no longer valid!"
       redirect_to root_path
-    end 
+    end
+    @question = Array.new
+    @results.each do |result|
+      @question << result[:id]
+    end
+  end
+
+  def quiz_review
+    if !params[:review].nil?
+      AdminTask.question_review(params[:review][:question], current_user.id)
+      flash[:notice] = "The questions have been submitted for review"
+    end
+    redirect_to request.referer
   end
 
 end

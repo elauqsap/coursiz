@@ -1,11 +1,14 @@
 class HomeController < ApplicationController
-	
-  def index
+
+  before_filter do |c|
   	if !user_signed_in?
+  		@users = User.all
   		redirect_to new_user_session_path
-  	else
-    	@users = User.all
-    end
+  	end
+  end
+
+  def index
+  	
   end
 
 end

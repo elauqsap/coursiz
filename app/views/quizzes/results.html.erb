@@ -4,7 +4,7 @@
    <%= render 'layouts/sidenav' %>
   </div>
   <div class="span8">
-    <%= form_tag(check_answer_path) do %>
+    <%= form_tag(quiz_review_path) do |c| %>
     <table class="table table-bordered">
  	 <thead>
       <tr>
@@ -17,24 +17,24 @@
         <% @results.each do |result| %>
           <% if result[:valid] == 0 %>
             <tr class="error">
-            <td><%= @results.find_index(result) + 1 %></td>
-            <td id="<%= result[:user] %>"><%= result[:user] %></td>
-            <td><i class="icon-remove"></i></td>
-            <td><%= radio_button_tag(:review, "#{@option4}") %></td>
+            <td id="number"><%= @results.find_index(result) + 1 %></td>
+            <td><%= result[:user] %></td>
+            <td id="icon"><i class="icon-remove"></i></td>
+            <td id="check"><%= check_box_tag("review[question][]", @question[@results.find_index(result)]) %></td>
           <% else %>
             <tr class="success">
-            <td><%= @results.find_index(result) + 1 %></td>
-            <td id="<%= result[:user] %>"><%= result[:user] %></td>
-            <td><i class="icon-ok"></i></td>
-            <td align="center"><%= radio_button_tag(:review, 1) %></td>
+            <td id="number"><%= @results.find_index(result) + 1 %></td>
+            <td><%= result[:user] %></td>
+            <td id="icon"><i class="icon-ok"></i></td>
+            <td id="check"><%= check_box_tag("review[question][]", @question[@results.find_index(result)]) %></td>
           <% end %>
         </tr>
         <% end %>
       </tbody>
-      <% end %> 
      </thead>
     </table>
-
+    <div class="offset10"><button id="myBtn" class="btn btn-primary">Submit</button></div>
+    <% end %> 
   </div>
  </div>
 </div>

@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.13'
 gem 'simplecov', :require => false, :group => :test
+gem 'lazy_high_charts'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

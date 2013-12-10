@@ -61,5 +61,4 @@ class Stat < ActiveRecord::Base
     end 
     return @chart
   end
-
 end

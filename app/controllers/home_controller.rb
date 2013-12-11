@@ -4,7 +4,9 @@ class HomeController < ApplicationController
   	if !user_signed_in?
   		redirect_to new_user_session_path
   	else
-    	@users = User.all
+    	@users = current_user
+
+    	@enrolled_classes = nil
     	
     end
   end

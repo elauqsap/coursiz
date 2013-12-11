@@ -5,10 +5,16 @@
         </div>
       <div class="span10">
         <div class="hero-unit">
-           <div class="well well-small">
+          <h2>Welcome <%= @users.name%>
+          <hr>
+          <% if !@enrolled_classes.nil? %>
+            <h4>Your enrolled classes
 
+          <% else %>
+            <h4>Your are not enrolled in any classes
 
-      </div>
+          <% end %>
+
       </div>
     </div>
   </div>

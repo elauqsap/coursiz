@@ -3,30 +3,38 @@
   <div class="span2">
    <%= render 'layouts/sidenav' %>
   </div>
-  <div class="span8">
-  <h3>Quiz Results </h3>
-    <table class="table table-bordered">
+  <div class="span9">
+    <%= form_tag(quiz_review_path) do |c| %>
+  <table class="table table-bordered">
  	 <thead>
       <tr>
-       <th>Answer</th>
+       <th>#</th>
+       <th>Quiz Results - Answers Submitted</th>
+       <th></th>
+       <th>Flag Question</th>
       </tr>
       <tbody>
         <% @results.each do |result| %>
-        <% if result[:valid] == 0 %>
-        <tr class="error">
-        <td id="<%= result[:user] %>"><%= result[:user] %></td>
-        <td><i class="icon-remove"></i></td>
-        <% else %>
-        <tr class="success">
-        <td id="<%= result[:user] %>"><%= result[:user] %></td>
-        <td><i class="icon-ok"></i></td>
-        <% end %>
+          <% if result[:valid] == 0 %>
+            <tr class="error">
+            <td id="number"><%= @results.find_index(result) + 1 %></td>
+            <td><%= result[:user] %></td>
+            <td id="icon"><i class="icon-remove"></i></td>
+            <td id="check"><%= check_box_tag("review[question][]", @question[@results.find_index(result)]) %></td>
+          <% else %>
+            <tr class="success">
+            <td id="number"><%= @results.find_index(result) + 1 %></td>
+            <td><%= result[:user] %></td>
+            <td id="icon"><i class="icon-ok"></i></td>
+            <td id="check"><%= check_box_tag("review[question][]", @question[@results.find_index(result)]) %></td>
+          <% end %>
         </tr>
         <% end %>
       </tbody>
      </thead>
     </table>
-
+    <div class="offset10"><button id="myBtn" class="btn btn-primary">Submit</button></div>
+    <% end %> 
   </div>
  </div>
 </div>

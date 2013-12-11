@@ -1,14 +1,35 @@
 class HomeController < ApplicationController
-	
-  def index
+
+  before_filter do |c|
   	if !user_signed_in?
+  		@users = User.all
   		redirect_to new_user_session_path
   	else
     	@users = current_user
 
     	@enrolled_classes = nil
     	
-    end
+  	end
+  end
+
+  def index
+  	if can? :admin, :all?
+  		@tasks = AdminTask.fix_task
+  	end
+  end
+
+  def complete
+  	AdminTask.complete(params[:task])
+  	redirect_to request.referrer
+  end
+
+  def support
+    @task = AdminTask.new()
+  end
+
+  def add_task
+    flash[:notice] = "Your request has been added"
+    redirect_to request.referrer
   end
 
 end

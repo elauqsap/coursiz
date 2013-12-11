@@ -1,0 +1,19 @@
+<div class="container" id="mainNav">
+  <div class="row-fluid">
+    <div class="span2">
+          <%= render 'layouts/sidenav' %>
+        </div>
+      <div class="span8">
+      	<div class="well">
+      		<h2>Support Page</h2>
+				<%= simple_form_for @task, :url => url_for(:action => 'add_task', :controller => 'home'), :method => 'post' do |task| %>
+  				<%= task.error_notification %>
+  				<%= task.input :request_type, collection: AdminTask.request_types, prompt: "Select a Request", :required => true, :label => "Type", :autofocus => true %>
+  				<%= task.input :request, :as => :text, :input_html => { :cols => 100, :rows => 8, :class => "span8" }, :label => "Please comment on the Request or Issue", :required => true %>
+  				<%= task.button :submit, "Submit ", :class => 'btn-primary' %>
+				<% end %>
+			</div>
+      </div>
+    </div>
+  </div>
+</div>

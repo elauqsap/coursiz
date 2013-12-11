@@ -1,17 +1,31 @@
 class QuizzesController < ApplicationController
 protect_from_forgery
 before_filter :authenticate_user!
+before_filter :set_no_cache
 
   def index
     @quiz = Quiz.all
   end
 
+  def start
+    if Category.find_by_name(params[:category_id]).nil?
+      redirect_to root_path
+    end  
+  end
+
   def set_session
-    session[:start_quiz] = SecureRandom.hex(32)
-    redirect_to category_quiz_path(:category_id => params[:category_id], :id=> params[:id])
+    if Category.find_by_name(params[:category_id]).nil?
+      redirect_to root_path
+    else  
+      session[:start_quiz] = SecureRandom.hex(32)
+      redirect_to category_quiz_path(:category_id => params[:category_id], :id=> params[:id])
+    end
   end
 
 	def show
+    if Category.find_by_name(params[:category_id]).nil?
+      redirect_to root_path and return
+    end 
     if !session[:start_quiz].nil?
       if params[:q].nil?
         session[:answers] = []
@@ -77,14 +91,33 @@ before_filter :authenticate_user!
     @results = session[:answers].compact
     params[:current_user] = current_user.id
     if @results.nil?
-      flash[:notice] = "The quiz session is no longer valid!"
+      flash[:alert] = "The quiz session is no longer valid!"
       redirect_to root_path
     else
       if session[:stats]
         session.delete(:stats)
         Stat.results_tally(@results, params)
       end
+
+      @question = Array.new
+      @results.each do |result|
+        @question << result[:id]
+      end
     end 
+  end
+
+  def quiz_review
+    if !params[:review].nil?
+      AdminTask.question_review(params[:review][:question], current_user.id)
+      flash[:notice] = "The questions have been submitted for review"
+    end
+    redirect_to request.referer
+  end
+
+  def set_no_cache
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
 
 end

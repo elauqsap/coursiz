@@ -5,9 +5,11 @@
         </div>
       <div class="span10">
         <div class="well">
-          <!-- render the admin view here -->
-        <% if can? :admin, User %>
-          
+        <% if can? :admin, :all %>
+        <!--  <= render adminpanel %> -->
+        <p>ADMIN</p>
+        <% else %>
+        <p>NOT ADMIN</p>
         <% end %>
       </div>
       </div>

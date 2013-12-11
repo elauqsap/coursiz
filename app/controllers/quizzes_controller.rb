@@ -6,12 +6,25 @@ before_filter :authenticate_user!
     @quiz = Quiz.all
   end
 
+  def start
+    if Category.find_by_name(params[:category_id]).nil?
+      redirect_to root_path
+    end  
+  end
+
   def set_session
-    session[:start_quiz] = SecureRandom.hex(32)
-    redirect_to category_quiz_path(:category_id => params[:category_id], :id=> params[:id])
+    if Category.find_by_name(params[:category_id]).nil?
+      redirect_to root_path
+    else  
+      session[:start_quiz] = SecureRandom.hex(32)
+      redirect_to category_quiz_path(:category_id => params[:category_id], :id=> params[:id])
+    end
   end
 
 	def show
+    if Category.find_by_name(params[:category_id]).nil?
+      redirect_to root_path and return
+    end  
     if !session[:start_quiz].nil?
       if params[:q].nil?
         session[:answers] = []

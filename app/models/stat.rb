@@ -28,8 +28,26 @@ class Stat < ActiveRecord::Base
   	results.each_entry do |entry|
   		if entry[:valid] == 1
   			@c_answers += 1
+		 if params[:difficulty] == 1
+   			@correct_answers_beginning += 1
+     		elsif params[:difficulty] == 2
+ 			@correct_answers_middle += 1
+		elsif params[:difficulty] == 3
+			@correct_answers_end+= 1
+
+		end
+
   		else
-  			@f_answers += 1
+  		@f_answers += 1
+		 if params[:difficulty] == 1
+			@correct_answers_beginning += 1
+		elsif params[:difficulty] == 2
+			@correct_answers_middle += 1
+		elsif params[:difficulty] == 3
+			@correct_answers_end+= 1
+
+			end 
+
   		end
   	end
   	@stat.c_answers = (@stat.c_answers || 0 ) + @c_answers
@@ -77,4 +95,9 @@ class Stat < ActiveRecord::Base
     end 
     return @chart
   end
+
+
+ 
+
+
 end

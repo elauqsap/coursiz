@@ -5,7 +5,6 @@ class HomeController < ApplicationController
   		redirect_to new_user_session_path
   	else
     	@users = User.all
-    	@chart = Stat.create_chart(current_user.id)
     	
     end
   end

@@ -6,25 +6,28 @@ before_filter :authenticate_user!
   		flash[:warning] = "You currently have no Quiz Statistics"
   		redirect_to root_path
   	else
-    	@chart = Stat.create_chart(current_user.id)
+    	@percent_chart = Stat.create_chart(current_user.id,"percent_pie")
+
     	@answer_count = Stat.get_correct(current_user.id)
     	@wrong_count = Stat.get_incorrect(current_user.id)
-	
-@bar = LazyHighCharts::HighChart.new('column') do |f|
-    f.series(:name=>'John',:data=> [3, 20, 3 ])
-    f.series(:name=>'Jane',:data=>[1, 3, 4] )  
-    f.title({ :text=>"example test title from controller"})
+    	@percent_correct = ((@answer_count.to_f/(@answer_count.to_f+@wrong_count.to_f)) * 100).round(2)
+    	@percent_wrong = ((@wrong_count.to_f/(@answer_count.to_f+@wrong_count.to_f)) * 100).round(2)
 
-    ###  Options for Bar
-    ### f.options[:chart][:defaultSeriesType] = "bar"
-    ### f.plot_options({:series=>{:stacking=>"normal"}}) 
+    	@difficulty_chart = Stat.create_chart(current_user.id,"difficulty_bar")
 
-    ## or options for column
-    f.options[:chart][:defaultSeriesType] = "column"
-    f.plot_options({:column=>{:stacking=>"percent"}})
-   
-        end
+    	@correct_1 = Stat.get_correct_or_incorrect_by_difficulty(current_user.id,"correct","beginning")
+    	@correct_2 = Stat.get_correct_or_incorrect_by_difficulty(current_user.id,"correct","middle")
+    	@correct_3 = Stat.get_correct_or_incorrect_by_difficulty(current_user.id,"correct","end")
 
+    	@false_1 = Stat.get_correct_or_incorrect_by_difficulty(current_user.id,"incorrect","beginning")
+    	@false_2 = Stat.get_correct_or_incorrect_by_difficulty(current_user.id,"incorrect","middle")
+    	@false_3 = Stat.get_correct_or_incorrect_by_difficulty(current_user.id,"incorrect","end")
+
+    	@results_chart = Stat.create_chart(current_user.id,"results_bar")
+
+    	@difficulty_1_count = Stat.get_count_by_difficulty(current_user.id,"beginning")
+    	@difficulty_2_count = Stat.get_count_by_difficulty(current_user.id,"middle")
+    	@difficulty_3_count = Stat.get_count_by_difficulty(current_user.id,"end")
 
 
     end

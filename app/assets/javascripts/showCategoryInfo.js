@@ -48,7 +48,6 @@ var CategoryPopup = {
             '<thead>'+
               '<tr>'+
                 '<th>Quiz Difficulty</th>'+
-                '<th>Created</th>'+
               '</tr>'+
             '</thead>'+
             '<tbody>'+
@@ -69,7 +68,6 @@ var CategoryPopup = {
               $("#"+categoryName+ "Table tbody").append(
                   "<tr>"+
                       "<td id='quizSelection' class="+categoryName+">"+jsonData[i].difficulty+"</td>"+
-                      "<td>"+jsonData[i].created_at+"</td>"+
                   "</tr>");
 
           }

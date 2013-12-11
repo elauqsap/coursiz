@@ -2,7 +2,7 @@ class CreateAdminTasks < ActiveRecord::Migration
   def change
     create_table :admin_tasks do |t|
       t.references 	:user
-      t.string		:type
+      t.string		:request_type
       t.text		:request
       t.timestamps
     end

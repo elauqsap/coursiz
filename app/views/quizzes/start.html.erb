@@ -3,10 +3,10 @@
   <div class="span2">
     <%= render 'layouts/sidenav' %>
   </div>
-  <div class="span5 offset1">
-  <div class="well">  
+  <div class="span5 offset2">
+  <div class="span4 well">  
   	<h4>You are about to start <%= Category.find_by_name(params[:category_id]).real_name %> Quiz # <%= params[:id] %></h3> 
-  <div>
+  <div id="info">
     <p>Please remember the following while taking the quiz</p>
     <ul>
       <li>The material is based on your progress in the course</li>

@@ -6,6 +6,7 @@ Coursiz::Application.routes.draw do
   devise_for :users
   resources :users
   get '/admin_task/', to: 'home#index', as: 'index'
+  post '/complete', to: 'home#complete', as: 'complete'
   get '/categories/manage', to: 'categories#manage'
   get '/categories/:category_id/quizzes/results', to: 'quizzes#results', as: 'quiz_results'
   post '/categories/:category_id/quizzes/checkanswer', to: 'quizzes#check_answer', as: 'check_answer'

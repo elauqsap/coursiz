@@ -1398,5 +1398,41 @@ Quiz.create(
 :false_3 => '3 and 4',
 :question_number => 15)
 
-
 puts 'successfully put Questions'
+puts 'Add AdminTasks to DB'
+
+AdminTask.create(:user_id => 1, 
+	:request_type => "Site Issue", 
+	:request => "There seems to be an issue whenever I log out of the site as an Admin. The sign out page errors out and I am not longer able to sign back in. Please help me, I need to add a quiz for tomorrow!")
+
+AdminTask.create(:user_id => 1,
+	:request_type => "Question Review",
+	:request => "7,8,9")
+
+AdminTask.create(:user_id => 1,
+	:request_type => "Quiz Review",
+	:request => "Quiz #2 for Calculus does not seem to be functioning correctly, please take a look")
+
+AdminTask.create(:user_id => 5,
+	:request_type => "Add Feature",
+	:request => "As a user I would like to review some statistics on how I compare to my fellow students!")
+
+AdminTask.create(:user_id => 5,
+	:request_type => "Quiz Review",
+	:request => "Quiz #1 for EPS does not seem to be functioning correctly, please take a look")
+
+AdminTask.create(:user_id => 5,
+	:request_type => "Quiz Review",
+	:request => "Quiz #2 for EPS does not seem to be functioning correctly, please take a look")
+
+AdminTask.create(:user_id => 5,
+	:request_type => "Question Review",
+	:request => "15,16")
+
+AdminTask.create(:user_id => 12, 
+	:request_type => "Site Issue", 
+	:request => "Whenever I hit the back button in a quiz it take me back to another quiz question but it is not the same question as before!")
+
+AdminTask.create(:user_id => 12,
+	:request_type => "Question Review",
+	:request => "30,31,32")

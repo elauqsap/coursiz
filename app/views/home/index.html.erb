@@ -3,15 +3,12 @@
     <div class="span2">
           <%= render 'layouts/sidenav' %>
         </div>
-      <div class="span10">
-        <div class="well">
+      <div class="span8">
         <% if can? :admin, :all %>
-        <!--  <= render adminpanel %> -->
-        <p>ADMIN</p>
+          <%= render 'panel' %>
         <% else %>
-        <p>NOT ADMIN</p>
+        <p>RENDER USER VIEW</p>
         <% end %>
-      </div>
       </div>
     </div>
   </div>

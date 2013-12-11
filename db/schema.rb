@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(:version => 20131210195027) do
 
   create_table "admin_tasks", :force => true do |t|
     t.integer  "user_id"
-    t.string   "type"
+    t.string   "request_type"
     t.text     "request"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "categories", :force => true do |t|

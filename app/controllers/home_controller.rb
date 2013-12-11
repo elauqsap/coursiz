@@ -8,7 +8,14 @@ class HomeController < ApplicationController
   end
 
   def index
-  	
+  	if can? :admin, :all?
+  		@tasks = AdminTask.fix_task
+  	end
+  end
+
+  def complete
+  	AdminTask.complete(params[:task])
+  	redirect_to request.referrer
   end
 
 end

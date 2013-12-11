@@ -4,21 +4,18 @@
           <%= render 'layouts/sidenav' %>
         </div>
       <div class="span8">
-<!--         <div class="btn-toolbar">
-          <div class="btn-group" id="orderButtons"></div>
-        </div> -->
           <table class="table table-bordered animated fadeIn">
               <thead>
                 <tr>
                   <th><%= sortable "name" %></th>
-                  <th><%= sortable "created_at", "created" %></th>
+                  <th><%= sortable "created_at", "Created" %></th>
                 </tr>
               </thead>
               <tbody>
               <% @cat.each do |cat| %>
                 <tr id="category" class="<%= cat.name%>" >
                   <td id="<%= cat.name %>"><a href="categories/<%= cat.name%>"><i class="icon-chevron-right"></i>  <%= cat.real_name %></a></td>
-                  <td><%= cat.created_at %></td>
+                  <td id="number"><%= cat.created_at %></td>
                 </tr>
               <% end %>
               </tbody>

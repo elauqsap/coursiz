@@ -7,6 +7,8 @@ before_filter :authenticate_user!
   		redirect_to root_path
   	else
     	@chart = Stat.create_chart(current_user.id)
+    	@answer_count = Stat.get_correct(current_user.id)
+    	@wrong_count = Stat.get_incorrect(current_user.id)
     end
   end
 

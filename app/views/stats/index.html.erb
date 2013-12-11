@@ -4,12 +4,36 @@
           <%= render 'layouts/sidenav' %>
         </div>
       <div class="span10">
-        <div class="well">
-          <p>Default stats path
-           <%= high_chart("my_id4", @chart) do |c| %>
-            <%= raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ this.y +' %';}"  %>
-            <%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"  %>
-           <% end %>
+        <div class="hero-unit">
+           <div class="well well-small">
+            <div class="pie" id="percentCorrect">
+
+              <div class="header"><h2><u>Percent Correct</u></h2></div>
+
+              <div class="chart">
+               <%= high_chart("my_id4", @chart) do |c| %>
+                <%= raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ this.y +' %';}"  %>
+                <%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"  %>
+               <% end %>
+             </div>
+
+             <div class="results">
+              <div class="innerResults">
+
+                <div class="textResults">
+
+                  <u><p>Percent Correct:</u> <%= %>
+                  <u><p>Percent Incorrect:</u> <%= %>
+                  <u><p>Number Correct:</u> <%= @answer_count%>
+                  <u><p>Number Incorrect:</u> <%= @wrong_count%>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
       </div>
     </div>

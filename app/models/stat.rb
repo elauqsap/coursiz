@@ -1,6 +1,22 @@
 class Stat < ActiveRecord::Base
   attr_accessible :users_id
 
+
+  def self.get_correct(current_user)
+
+    @correct = Stat.find_by_users_id(current_user)
+
+    return @correct.c_answers
+
+  end
+  def self.get_incorrect(current_user)
+
+    @wrong = Stat.find_by_users_id(current_user)
+
+    return @wrong.f_answers
+
+  end
+
   def self.results_tally(results, params)
   	@c_answers = 0
   	@f_answers = 0
@@ -35,7 +51,7 @@ class Stat < ActiveRecord::Base
   def self.create_chart(current_user)
     @stat = Stat.find_by_users_id(current_user)
     @chart  = LazyHighCharts::HighChart.new('pie') do |f|
-        f.chart({:defaultSeriesType=>"pie" , :margin=> [50, 200, 60, 170]} )
+        f.chart({:defaultSeriesType=>"pie" , :width => "400", :height => "300" })
         series = {
                  :type=> 'pie',
                  :name=> 'Browser share',

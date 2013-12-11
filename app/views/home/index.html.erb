@@ -4,10 +4,36 @@
           <%= render 'layouts/sidenav' %>
         </div>
       <div class="span10">
-        <div class="well">
-        <% @users.each do |user| %>
-          <p>User: <%=link_to user.name, user %></p>
-        <% end %>
+        <div class="hero-unit">
+           <div class="well well-small">
+            <div class="pie" id="percentCorrect">
+
+              <div class="header"><h2><u>Percent Correct</h2></div>
+
+              <div class="chart">
+               <%= high_chart("my_id4", @chart) do |c| %>
+                <%= raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ this.y +' %';}"  %>
+                <%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"  %>
+               <% end %>
+             </div>
+
+             <div class="results">
+              <div class="innerResults">
+
+                <div class="textResults">
+
+                  <p>Percent Correct: <%= %>
+                  <p>Percent Incorrect:<%= %>
+                  <p>Number Correct:<%= %>
+                  <p>Number Incorrect:<%= %>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
       </div>
     </div>

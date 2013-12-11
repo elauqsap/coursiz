@@ -18,4 +18,13 @@ class HomeController < ApplicationController
   	redirect_to request.referrer
   end
 
+  def support
+    @task = AdminTask.new()
+  end
+
+  def add_task
+    flash[:notice] = "Your request has been added"
+    redirect_to request.referrer
+  end
+
 end

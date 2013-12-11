@@ -7,6 +7,8 @@ Coursiz::Application.routes.draw do
   resources :users
   get '/admin_task/', to: 'home#index', as: 'index'
   post '/complete', to: 'home#complete', as: 'complete'
+  get '/support', to: 'home#support', as: 'support'
+  post '/add_task', to: 'home#add_task', as: 'add_task'
   get '/categories/manage', to: 'categories#manage'
   get '/categories/:category_id/quizzes/results', to: 'quizzes#results', as: 'quiz_results'
   post '/categories/:category_id/quizzes/checkanswer', to: 'quizzes#check_answer', as: 'check_answer'

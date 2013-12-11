@@ -4,18 +4,21 @@
 	    <%= link_to 'Home', root_path%>
 	    </li>
 	    <li class=" <%= 'active' if params[:controller] == 'quizzes' %>">
-	    <%= link_to 'Quizzes by Category', categories_path %>
+	    <%= link_to 'All Quizzes', categories_path %>
 	    </li>
 	    <% if current_user.has_role? :admin %>
 	    <li class=" <%= 'active' if params[:categories] == 'categories' %>">
 	    <%= link_to 'Manage', categories_manage_path %>
 	    </li>
 	    <% else %>
+	    	<li class=" <%= 'active' if params[:controller] == 'stats' %>">
+	    	<%= link_to 'User Statistics', stats_path %>
+	    	</li>
 	   		<li class=" <%= 'active' if params[:controller] == 'X' %>">
 	    	<%= link_to 'Study Guides' %>
 	    	</li>
-	    	<li class=" <%= 'active' if params[:controller] == 'stats' %>">
-	    	<%= link_to 'Stats', stats_path %>
+	    	<li class=" <%= 'active' if params[:controller] == 'support' %>">
+	    	<%= link_to 'Support', root_path %>
 	    	</li>
 	    <% end %>
 	</ul>

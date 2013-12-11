@@ -61,8 +61,19 @@ ActiveRecord::Schema.define(:version => 20131210195027) do
     t.integer  "difficulty_1"
     t.integer  "difficulty_2"
     t.integer  "difficulty_3"
+<<<<<<< HEAD
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+=======
+    t.integer  "correct_answers_beginning"
+    t.integer  "correct_answers_middle"
+    t.integer  "correct_answers_end"
+    t.integer  "false_answers_beginning"
+    t.integer  "false_answers_middle"
+    t.integer  "false_answers_end"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+>>>>>>> quizscoring
   end
 
   create_table "users", :force => true do |t|

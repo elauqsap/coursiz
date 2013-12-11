@@ -4,8 +4,154 @@
           <%= render 'layouts/sidenav' %>
         </div>
       <div class="span10">
-        <div class="well">
-          <p>Default stats path
+        <div class="hero-unit">
+           <div class="well well-small">
+            <div class="pie" id="percentCorrect">
+
+              <div class="header"><h2><u>Percent Correct</u></h2></div>
+
+              <div class="chart">
+               <%= high_chart("my_id4", @percent_chart) do |c| %>
+                <%= raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ this.y +' %';}"  %>
+                <%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"  %>
+               <% end %>
+             </div>
+
+             <div class="results">
+              <div class="innerResults">
+
+                <div class="textResults">
+
+                  <table class="table table-bordered animated fadeIn">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Correct</th>
+                          <th>Incorrect</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr >
+                            <td>Percent</td>
+                            <td><%= @percent_correct%></td>
+                            <td><%= @percent_wrong%></td>
+                        </tr>
+                        <tr >
+                            <td>Count</td>
+                            <td><%= @answer_count%></td>
+                            <td><%= @wrong_count%></td>
+
+                        </tr>
+
+                      </tbody>
+                    </table>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="well well-small">
+            <div class="bar" id="percentCorrect">
+
+              <div class="header"><h2><u>Question Results by Difficulty</u></h2></div>
+
+              <div class="chart">
+               <%= high_chart("my_id5", @difficulty_chart) do |c| %>
+               <% end %>
+             </div>
+
+             <div class="results">
+              <div class="innerResults">
+
+                <div class="textResults">
+
+                  <table class="table table-bordered animated fadeIn">
+                      <thead>
+                        <tr>
+                          <th>Difficulty</th>
+                          <th>Correct</th>
+                          <th>Incorrect</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr >
+                            <td>Beginning</td>
+                            <td><%= @correct_1%></td>
+                            <td><%= @false_1%></td>
+                        </tr>
+                        <tr >
+                            <td>Middle</td>
+                            <td><%= @correct_2%></td>
+                            <td><%= @false_2%></td>
+                        </tr>
+                        <tr >
+                            <td>Hard</td>
+                            <td><%= @correct_3%></td>
+                            <td><%= @false_3%></td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="well well-small">
+            <div class="bar2" id="percentCorrect">
+
+              <div class="header"><h2><u>Quizzes Completed by Difficulty</u></h2></div>
+
+              <div class="chart">
+               <%= high_chart("my_id6", @results_chart) do |c| %>
+               <% end %>
+             </div>
+
+             <div class="results">
+              <div class="innerResults">
+
+                <div class="textResults">
+
+                  <table class="table table-bordered animated fadeIn">
+                      <thead>
+                        <tr>
+                          <th>Difficulty</th>
+                          <th>Attempts</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr >
+                            <td>Beginning</td>
+                            <td><%= @difficulty_1_count%></td>
+                        </tr>
+                        <tr >
+                            <td>Middle</td>
+                            <td><%= @difficulty_2_count%></td>
+                        </tr>
+                        <tr >
+                            <td>Hard</td>
+                            <td><%= @difficulty_3_count%></td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
       </div>
     </div>

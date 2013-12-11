@@ -2,6 +2,45 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.pie {
+	
+
+width: 800px;
+/*border: 1px solid black;*/
+overflow: hidden; 
+
+}
+
+.chart {
+    width: 400px;
+    float:left; /* add this */
+    /*border: 1px solid red;*/
+}
+.results {
+	height: 300px;
+    /*border: 1px solid green;*/
+    overflow: hidden; /* if you don't want #second to wrap below #first */
+}
+
+
+.innerResults {
+
+	box-shadow: 3px 3px 5px 6px #ccc;
+	margin: 40px;
+	border-radius: 8px;
+
+	border: 3px solid gray;
+
+	height: 200px;
+	padding: 10px;
+
+}
+
+.textResults {
+
+	margin: 10px;
+}
 #table-header {
     text-align: center;
     vertical-align: middle;
@@ -25,4 +64,5 @@
 #check {
     text-align: center;
     vertical-align: middle;
+
 }

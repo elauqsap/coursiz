@@ -41,32 +41,33 @@ class UsersController < ApplicationController
     if @categories_from_form.nil?
       flash[:notice] = "No category selected"
       redirect_to root_path
-    end
+  
+      else
 
-    if @categories_enrolled.nil?
+        if @categories_enrolled.nil?
 
-      @categories_enrolled = Array.new
+          @categories_enrolled = Array.new
 
-    end
-
-      @category_array = @categories_enrolled
-
-      @categories_from_form.each_key do |id|
-
-        if !@category_array.include?(id)
-            @category_array << id
         end
 
+          @category_array = @categories_enrolled
+
+          @categories_from_form.each_key do |id|
+
+            if !@category_array.include?(id)
+                @category_array << id
+            end
+
+
+          end
+
+
+        current_user.categories_enrolled = @category_array
+        current_user.save
+
+        redirect_to root_path
 
       end
-
-
-    current_user.categories_enrolled = @category_array
-    current_user.save
-
-    redirect_to root_path
-
-
 
   end
 
@@ -79,25 +80,28 @@ class UsersController < ApplicationController
     if @categories_from_form.nil?
       flash[:notice] = "No category selected"
       redirect_to root_path
-    end
 
-    @category_array = @categories_enrolled
+    else
 
-
-    @categories_from_form.each_key do |id|
-
-      @category_array.delete(id)
+        @category_array = @categories_enrolled
 
 
-    end
+        @categories_from_form.each_key do |id|
 
-    current_user.categories_enrolled = @category_array
-    current_user.save
-
-    redirect_to root_path
+          @category_array.delete(id)
 
 
-  end
+        end
+
+        current_user.categories_enrolled = @category_array
+        current_user.save
+
+        redirect_to root_path
+
+
+      end
+
+   end
 
 
 end

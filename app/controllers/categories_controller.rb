@@ -4,15 +4,18 @@ before_filter :authenticate_user!
 helper_method :sort_column, :sort_direction
 
 	def index
-    # @cat = Category.all
     @cat = Category.order(sort_column + " " + sort_direction)
   end
 
 	def show
     @cat = Category.find_by_name(params[:id])
-    @catQuizzes = @cat.quizzes
-    @cat2 = @catQuizzes.pluck(:difficulty).uniq
-    render :json => @catQuizzes if request.xhr?
+    if !@cat.nil?
+      @catQuizzes = @cat.quizzes
+      @cat2 = @catQuizzes.pluck(:difficulty).uniq
+      render :json => @catQuizzes if request.xhr?
+    else
+      redirect_to root_path
+    end
   end
 
   def new
@@ -35,7 +38,6 @@ helper_method :sort_column, :sort_direction
     end
   end
 
-
   def manage
     redirect_to root_path unless can? :admin, :all
     @cat = Category.new
@@ -43,13 +45,13 @@ helper_method :sort_column, :sort_direction
     if !params[:errors].blank?
       params[:errors].each_pair do |key,val|
         if key.eql? "name"
-          @cat.errors.add(key,"#{val}")
+          @cat.errors.add(key,val.join)
         else
-          @quiz.errors.add(key,"#{val}")
+          @quiz.errors.add(key,val.join)
         end
       end
     end
-end
+  end
 
   private
   

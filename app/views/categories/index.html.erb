@@ -3,11 +3,11 @@
     <div class="span2">
           <%= render 'layouts/sidenav' %>
         </div>
-      <div class="span8">
+      <div class="span10">
           <table class="table table-bordered animated fadeIn">
               <thead>
                 <tr>
-                  <th><%= sortable "name" %></th>
+                  <th><%= sortable "name", "Courses" %></th>
                   <th><%= sortable "created_at", "Created" %></th>
                   <th>Enroll in class</th>
                 </tr>
@@ -26,7 +26,7 @@
               <% end %>
               </tbody>
             </table>
-            <%= submit_tag 'Enroll in classes', :id => 'enrolled_classes', :class => 'btn btn-primary'  %>
+            <%= submit_tag 'Enroll in Classes', :id => 'enrolled_classes', :class => 'btn btn-primary'  %>
 
             <% end %> 
       </div>

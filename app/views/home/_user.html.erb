@@ -2,7 +2,7 @@
     <h2>Welcome <%= @users.name%>
     <hr>
     <% if @enrolled_categories.size > 0 %>
-    	<h4>Your enrolled classes</h4>
+    	<h4>Enrolled Classes</h4>
     		<table class="table table-bordered animated fadeIn">
     		    <thead>
     		      <tr>
@@ -22,7 +22,7 @@
     		    <% end %>
     		    </tbody>
     		  </table>
-    		  <%= submit_tag 'Remove classes', :id => 'removed_classes', :class => 'btn btn-primary' %>
+    		  <%= submit_tag 'Remove Classes', :id => 'removed_classes', :class => 'btn btn-primary' %>
 
     		  <% end %> 
     <% else %>

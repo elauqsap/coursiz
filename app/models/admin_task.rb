@@ -1,8 +1,9 @@
 class AdminTask < ActiveRecord::Base
   attr_accessible :user_id, :request_type, :request
+  validates_presence_of :request_type, :request
 
   def self.request_types
-  	 %W(#{"Request Help"} #{"Quiz Review"} #{"Add Feature"} #{"Site Issue"})
+  	 %W(#{"Request Help"} #{"Question Review"} #{"Quiz Review"} #{"Add Feature"} #{"Site Issue"})
   end
 
   def self.question_review(params, user_id)

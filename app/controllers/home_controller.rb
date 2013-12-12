@@ -4,9 +4,6 @@ class HomeController < ApplicationController
   	if !user_signed_in?
   		@users = User.all
   		redirect_to new_user_session_path
-  	else
-
-    	
   	end
   end
 
@@ -15,17 +12,11 @@ class HomeController < ApplicationController
   		@tasks = AdminTask.fix_task
   	end
     @users = current_user
-    
     if current_user.categories_enrolled.nil?
-
       current_user.categories_enrolled = Array.new
       current_user.save
-
     end
-
     @enrolled_categories = current_user.categories_enrolled
-
-
   end
 
   def complete
@@ -34,14 +25,25 @@ class HomeController < ApplicationController
   end
 
   def support
-    @task = AdminTask.new()
+    @task = AdminTask.new
+    if !params[:errors].blank?
+      params[:errors].each_pair do |key,val|
+          @task.errors.add(key,val.join)
+      end
+    end
   end
 
   def add_task
-    flash[:notice] = "Your request has been added"
-    redirect_to request.referrer
+    @task = AdminTask.new(params[:admin_task])
+    if !@task.valid?
+      @task.save
+      redirect_to support_path(:errors => @task.errors.messages) and return
+    else
+      @task.user_id = current_user.id
+      @task.save!
+      flash[:notice] = "Your request has been added"
+      redirect_to support_path
+    end
   end
-
-
 
 end

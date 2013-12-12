@@ -38,6 +38,11 @@
           <% end %>
 
       </div>
+        <% if can? :admin, :all %>
+          <%= render 'panel' %>
+        <% else %>
+          <%= render 'user' %>
+        <% end %>
     </div>
   </div>
 </div>

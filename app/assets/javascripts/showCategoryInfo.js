@@ -1,23 +1,23 @@
 var CategoryPopup = {
   setup: function() {
-    $(document).on('click', '#category', CategoryPopup.getCategoryInfo);
+    $(document).on('click', '.category', CategoryPopup.getCategoryInfo);
     $(document).on('click', '#quizSelection', CategoryPopup.goToQuiz);
-
-    var expandAll = '<div class="btn-group">'+
-                      '<button class="btn">Expand All</button>'
-                    "</div>";
-
-    // $('.expandDiv').html(expandAll);
-
-    $(document).on('click', '.expandDiv', CategoryPopup.expandAllCategories);
-
 
   }
 
   ,getCategoryInfo: function() {
 
-        var category = $(this).attr('class');
-        var address = "categories/" + category;
+        // var address = $(this).attr('href');
+        //  // var address = "categories/" + category;
+        //  var parent = $(this).parent();
+        //  var category = $(parent).attr('id');
+
+        var category = $(this).attr('id');
+        category = category.replace(/ /g,'');
+        category = category.toLowerCase();
+
+        var address = "categories/"+category;
+
 
           $.ajax({type: 'GET',
                   dataType: 'json',
@@ -27,13 +27,12 @@ var CategoryPopup = {
                   },
                   timeout: 5000,
                   error: function(xhrObj, textStatus, exception) {}
-                   // 'timeout' and 'error' functions omitted for brevity
+                   
                 });
     return(false);
 
   }
   ,showCategoryInfo: function(jsonData, categoryName) {
-
 
 
     if( $('#'+categoryName).children().length > 1) {

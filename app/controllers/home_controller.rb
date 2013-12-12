@@ -5,9 +5,7 @@ class HomeController < ApplicationController
   		@users = User.all
   		redirect_to new_user_session_path
   	else
-    	@users = current_user
 
-    	@enrolled_classes = nil
     	
   	end
   end
@@ -16,6 +14,13 @@ class HomeController < ApplicationController
   	if can? :admin, :all?
   		@tasks = AdminTask.fix_task
   	end
+    @users = current_user
+
+    @enrolled_categories = current_user.categories_enrolled
+
+    puts "BLAHHH"
+    puts @enrolled_categories.size
+
   end
 
   def complete
@@ -31,5 +36,7 @@ class HomeController < ApplicationController
     flash[:notice] = "Your request has been added"
     redirect_to request.referrer
   end
+
+
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131210195027) do
+ActiveRecord::Schema.define(:version => 20131212002637) do
 
   create_table "admin_tasks", :force => true do |t|
     t.integer  "user_id"
@@ -61,10 +61,6 @@ ActiveRecord::Schema.define(:version => 20131210195027) do
     t.integer  "difficulty_1"
     t.integer  "difficulty_2"
     t.integer  "difficulty_3"
-<<<<<<< HEAD
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-=======
     t.integer  "correct_answers_beginning"
     t.integer  "correct_answers_middle"
     t.integer  "correct_answers_end"
@@ -73,7 +69,6 @@ ActiveRecord::Schema.define(:version => 20131210195027) do
     t.integer  "false_answers_end"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
->>>>>>> quizscoring
   end
 
   create_table "users", :force => true do |t|
@@ -95,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20131210195027) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name"
+    t.string   "categories_enrolled"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

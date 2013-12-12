@@ -16,6 +16,8 @@ Coursiz::Application.routes.draw do
   get '/categories/:category_id/quizzes/set', :to=>'quizzes#set_session', as: 'set_session'
   post '/categories/quizzes', to: 'quizzes#create'
   post '/categories/quizzes/review', to: 'quizzes#quiz_review', as: 'quiz_review'
+  post '/categories/enroll', to: 'users#enroll', as: 'category_enroll'
+  post '/categories/remove_categories', to: 'users#remove_categories', as: 'category_remove'
   resources :categories do
     resources :quizzes
   end

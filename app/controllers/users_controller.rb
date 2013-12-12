@@ -30,4 +30,74 @@ class UsersController < ApplicationController
       redirect_to users_path, :notice => "Can't delete yourself."
     end
   end
+
+  def enroll
+
+
+    @categories_enrolled = current_user.categories_enrolled
+    @categories_from_form = params[:enrolled_collection]
+
+
+    if @categories_from_form.nil?
+      flash[:notice] = "No category selected"
+      redirect_to root_path
+    end
+
+    if @categories_enrolled.nil?
+
+      @categories_enrolled = Array.new
+
+    end
+
+      @category_array = @categories_enrolled
+
+      @categories_from_form.each_key do |id|
+
+        if !@category_array.include?(id)
+            @category_array << id
+        end
+
+
+      end
+
+
+    current_user.categories_enrolled = @category_array
+    current_user.save
+
+    redirect_to root_path
+
+
+
+  end
+
+
+  def remove_categories
+
+    @categories_enrolled = current_user.categories_enrolled
+    @categories_from_form = params[:remove_collection]
+
+    if @categories_from_form.nil?
+      flash[:notice] = "No category selected"
+      redirect_to root_path
+    end
+
+    @category_array = @categories_enrolled
+
+
+    @categories_from_form.each_key do |id|
+
+      @category_array.delete(id)
+
+
+    end
+
+    current_user.categories_enrolled = @category_array
+    current_user.save
+
+    redirect_to root_path
+
+
+  end
+
+
 end

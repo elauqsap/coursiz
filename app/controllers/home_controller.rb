@@ -15,11 +15,16 @@ class HomeController < ApplicationController
   		@tasks = AdminTask.fix_task
   	end
     @users = current_user
+    
+    if current_user.categories_enrolled.nil?
+
+      current_user.categories_enrolled = Array.new
+      current_user.save
+
+    end
 
     @enrolled_categories = current_user.categories_enrolled
 
-    puts "BLAHHH"
-    puts @enrolled_categories.size
 
   end
 

@@ -14,7 +14,7 @@
     		    <%= form_tag("categories/remove_categories", method: "post") do %>
     		    <% @enrolled_categories.each do |cat| %>
     		      <tr  id="<%= cat%>" >
-    		        <td class="category" id="<%= cat.gsub(/\s+/, "").downcase %>" ><a class="category" href="categories/<%=cat.gsub(/\s+/, "").downcase%>"><i class="icon-chevron-right"></i>  <%= cat %></a></td>
+    		        <td class="category" id="<%= cat.gsub(/\s+/, "").downcase %>" ><a href="categories/<%=cat.gsub(/\s+/, "").downcase%>"><i class="icon-chevron-right"></i>  <%= cat %></a></td>
     		       <td id="number">
     		         <%= check_box_tag("remove_collection[#{cat}]") %>
     		       </td>

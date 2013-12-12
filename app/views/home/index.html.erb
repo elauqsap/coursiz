@@ -4,18 +4,11 @@
           <%= render 'layouts/sidenav' %>
         </div>
       <div class="span10">
-        <div class="hero-unit">
-          <h2>Welcome <%= @users.name%>
-          <hr>
-          <% if !@enrolled_classes.nil? %>
-            <h4>Your enrolled classes
-
-          <% else %>
-            <h4>Your are not enrolled in any classes
-
-          <% end %>
-
-      </div>
+        <% if can? :admin, :all %>
+          <%= render 'panel' %>
+        <% else %>
+          <%= render 'user' %>
+        <% end %>
     </div>
   </div>
 </div>

@@ -7,7 +7,7 @@ And have added password "bigjohn1234"
 And have added password conformation "bigjohn1234" 
 And selected year "Senior"
 And selected major "Computer"
-And I have pressed "Sign up"
+And I have pressed "Sign Up"
 Then a new user "Jack O'Neill" should be created 
 And I should see "Welcome! You have signed up successfully."
 
@@ -24,7 +24,7 @@ When I click link "Logout"
 Given I am on "users/sign_in"
 And have added email "jack-oneill@stargatecommand.com" 
 And have added password "smiling12"
-And I have pressed "Sign in"
+And I have pressed "Sign In"
 And I should see "Signed in successfully."
 
 Scenario: Valid email change
@@ -40,7 +40,7 @@ When I click link "Logout"
 Given I am on "users/sign_in"
 And have added email "james-couch@uiowa.edu" 
 And have added password "bigjohn1234"
-And I have pressed "Sign in"
+And I have pressed "Sign In"
 Then I should see "Signed in successfully."
 
 Scenario: Invalid current password
@@ -82,7 +82,7 @@ When I click link "Logout"
 Given I am on "users/sign_in"
 And have added email "jack-oneill@stargatecommand.com" 
 And have added password "bigjohn1234"
-And I have pressed "Sign in"
+And I have pressed "Sign In"
 Then I should see "Signed in successfully."
 
 

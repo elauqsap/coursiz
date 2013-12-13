@@ -1,4 +1,4 @@
-Feature: As a user I want to be able to sign up a new account
+Feature: As a user I want to be able to Sign Up a new account
 
 Scenario: Add valid unique user
 Given I am on "users/sign_up"
@@ -8,7 +8,7 @@ And have added password "bigjohn1234"
 And have added password conformation "bigjohn1234" 
 And selected year "Senior"
 And selected major "Computer"
-And I have pressed "Sign up"
+And I have pressed "Sign Up"
 Then a new user "Jack O'Neill" should be created 
 And I should see "Welcome! You have signed up successfully."
 
@@ -20,7 +20,7 @@ And have added password "bigjohn1234"
 And have added password conformation "sdlfkjsd" 
 And selected year "Senior"
 And selected major "Computer"
-And I have pressed "Sign up"
+And I have pressed "Sign Up"
 Then I should see "Please review the problems below:"
 
 Scenario: Using incorrect email
@@ -31,7 +31,7 @@ And have added password "bigjohn1234"
 And have added password conformation "bigjohn1234" 
 And selected year "Senior"
 And selected major "Computer"
-And I have pressed "Sign up"
+And I have pressed "Sign Up"
 Then I should see "Please review the problems below:"
 
 
@@ -43,7 +43,7 @@ And have added password "bigjohn1234"
 And have added password conformation "bigjohn1234" 
 And selected year "Senior"
 And selected major "Computer"
-And I have pressed "Sign up"
+And I have pressed "Sign Up"
 Then I should see "Please review the problems below:"
 
 Scenario: Leaving email field blank
@@ -54,7 +54,7 @@ And have added password "bigjohn1234"
 And have added password conformation "bigjohn1234" 
 And selected year "Senior"
 And selected major "Computer"
-And I have pressed "Sign up"
+And I have pressed "Sign Up"
 Then I should see "Please review the problems below:"
 
 Scenario: Leaving password blank
@@ -65,7 +65,7 @@ And have added password ""
 And have added password conformation "bigjohn1234" 
 And selected year "Senior"
 And selected major "Computer"
-And I have pressed "Sign up"
+And I have pressed "Sign Up"
 Then I should see "Please review the problems below:"
 
 Scenario: Leaving password conformation blank
@@ -76,5 +76,5 @@ And have added password "bigjohn1234"
 And have added password conformation "" 
 And selected year "Senior"
 And selected major "Computer"
-And I have pressed "Sign up"
+And I have pressed "Sign Up"
 Then I should see "Please review the problems below:"

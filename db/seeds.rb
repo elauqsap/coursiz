@@ -1663,6 +1663,251 @@ Quiz.create(
 
 
 
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 3, 
+:question =>'What is the open/closed principle?', 
+:answer =>  'Leave the source code closed off but the program open for expansion', 
+:false_1 => 'Open the source code to the user to close off the confustion', 
+:false_2 => 'Close off the database to the user but open the rest of the code', 
+:false_3 => 'Open the database to other programmers but close off the rest of your code',
+:question_number => 1)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 3, 
+:question =>'What is the correct way to use github?', 
+:answer =>  'add -> commit -> push', 
+:false_1 => 'save -> commit -> push', 
+:false_2 => 'commit -> add -> push', 
+:false_3 => 'push -> add -> commit',
+:question_number => 2)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 3, 
+:question =>'How do you measure productivity of an application?', 
+:answer =>  'velocity', 
+:false_1 => 'speed', 
+:false_2 => 'iterations', 
+:false_3 => 'lines of code',
+:question_number => 3)
+
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 3, 
+:question =>'What does the V in MCV stand for?', 
+:answer =>  'View', 
+:false_1 => 'Visit', 
+:false_2 => 'Viper', 
+:false_3 => 'Visible',
+:question_number => 4)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 3, 
+:question =>'How often do most companies deploy applications?', 
+:answer =>  'Once a day to once a week', 
+:false_1 => 'Once a month', 
+:false_2 => 'Every minute', 
+:false_3 => 'Once every six months',
+:question_number => 5)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 3, 
+:question =>'What is promiscuous programming?', 
+:answer =>  'Programming with random pairs', 
+:false_1 => 'Programming in private', 
+:false_2 => 'Programming with someone you want to date', 
+:false_3 => 'Programming behind your partners back',
+:question_number => 6)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 3, 
+:question =>'What is the benefit of using feature flags for deployment?', 
+:answer =>  'Being able to revert back to previous version', 
+:false_1 => 'Being able to deploy to multiple platforms', 
+:false_2 => 'Being able to use destructive migration', 
+:false_3 => 'Being able to hide code',
+:question_number => 7)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 3, 
+:question =>'How are unique ids kept in a database?', 
+:answer =>  'Primary keys', 
+:false_1 => 'Custom strings', 
+:false_2 => 'Cache', 
+:false_3 => 'Cookies',
+:question_number => 8)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 3, 
+:question =>'What tool would you use to test JavaScript?', 
+:answer =>  'Jasmine', 
+:false_1 => 'Dafny', 
+:false_2 => 'RSpec', 
+:false_3 => 'Cucumber',
+:question_number => 9)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 3, 
+:question =>'Where should you put the feature flag?', 
+:answer =>  'Database', 
+:false_1 => 'Cookies', 
+:false_2 => 'Cache', 
+:false_3 => 'Jasmine',
+:question_number => 10)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 3, 
+:question =>'What are features ussually referred to in agile?', 
+:answer =>  'User Stories', 
+:false_1 => 'Iterations', 
+:false_2 => 'Scrums', 
+:false_3 => 'Agiles',
+:question_number => 11)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 3, 
+:question =>'How do you switch to a new branch with git?', 
+:answer =>  'git checkout <name_of_branch>', 
+:false_1 => 'git <name_of_branch> checkout', 
+:false_2 => 'git new branch <name_of_branch>', 
+:false_3 => 'git push branch <name_of_branch>',
+:question_number => 12)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 3, 
+:question =>'What is not a part of SOFA?', 
+:answer =>  'Absolute', 
+:false_1 => 'Short', 
+:false_2 => 'One thing', 
+:false_3 => 'Few Arguments',
+:question_number => 13)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 3, 
+:question =>'What are design smells?', 
+:answer =>  'Code that doesnt follow a design pattern.', 
+:false_1 => 'Code implemented the correct way', 
+:false_2 => 'Code that is all in the same file', 
+:false_3 => 'Code that has been arranged into simple easy to follow designs',
+:question_number => 14)
+
+
+
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 2, 
+:question =>'lWhat is the optimal size for a team using agile development?', 
+:answer =>  '2 pizza team size', 
+:false_1 => '1 pizza team size', 
+:false_2 => '2 people', 
+:false_3 => '10 people',
+:question_number => 1)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 2, 
+:question =>'What is not done during a scrum meeting?', 
+:answer =>  'The scrum master makes the final decisions', 
+:false_1 => 'They talk about what they have done', 
+:false_2 => 'They talk about what they are going to do', 
+:false_3 => 'They talk about issues they are having',
+:question_number => 2)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 2, 
+:question =>'Who is the Product Owner?', 
+:answer =>  'A team member who represents the voice of the customer', 
+:false_1 => 'Someone who buys your program', 
+:false_2 => 'The team member who is in charge of scrums', 
+:false_3 => 'The team member in charge of contacting the customer',
+:question_number => 3)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 2, 
+:question =>'What is not a panel in pivotal tracker?', 
+:answer =>  'Postponed', 
+:false_1 => 'Icebox', 
+:false_2 => 'Backlog', 
+:false_3 => 'Current',
+:question_number => 4)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 2, 
+:question =>'What is observer not supposed to do when pair programming?', 
+:answer =>  'Take a breather and rest their eyes', 
+:false_1 => 'Review each line a code', 
+:false_2 => 'Act as a safety net for the driver', 
+:false_3 => 'Think about strategic future problems making suggestions to the driver',
+:question_number => 5)
+
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 2, 
+:question =>'The method that contacts TMDb to
+search for a movie should be:', 
+:answer =>  'A controller method', 
+:false_1 => 'A helper method', 
+:false_2 => 'An instance method of the Movie model', 
+:false_3 => 'A class method of the Movie model',
+:question_number => 6)
+
+
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 2, 
+:question =>'What is the 90/10 rule?', 
+:answer =>  'The first 90% of the code accounts for the first 10% of the development time', 
+:false_1 => 'The first 90 days only 10% of the code is usable', 
+:false_2 => 'The first 90% of the code accounts for 10% of your program', 
+:false_3 => 'The first 10% of the code accounts for 90% of the program',
+:question_number => 7)
+
+
+
+
+
+
+
 
 puts 'successfully put Questions'
 puts 'Add AdminTasks to DB'

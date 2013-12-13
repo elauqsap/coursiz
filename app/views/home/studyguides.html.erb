@@ -1,0 +1,36 @@
+<div class="container" id="mainNav">
+<div class="row-fluid">
+  <div class="span2">
+    <%= render 'layouts/sidenav' %>
+  </div>
+  <div class="span6 offset1">
+    	<table class="table table-bordered animated fadeIn">
+    		<thead>
+    		    <tr>
+    		    <th>Study Guides</th>
+    		    </tr>
+    		</thead>
+    		<tbody>
+    		    <tr>
+    		    <td id="number"><%= link_to "Theoretical Computer Science", pdf_path(:pdf => "http://www.tug.org/texshowcase/cheat.pdf") %></td>
+    		    </tr>
+    		    <tr>
+    		    <td id="number"><%= link_to "Introduction to Calculus", pdf_path(:pdf => "http://ocw.mit.edu/resources/res-18-001-calculus-online-textbook-spring-2005/study-guide/MITRES_18_001_guide1.pdf") %></td>
+    		    </tr>
+    		    <tr>
+    		    <td id="number"><%= link_to "Introduction to Derivatives", pdf_path(:pdf => "http://ocw.mit.edu/resources/res-18-001-calculus-online-textbook-spring-2005/study-guide/MITRES_18_001_guide2.pdf") %></td>
+    		    </tr>
+    		    <tr>
+    		    <td id="number"><%= link_to "Applications of Derivatives", pdf_path(:pdf => "http://ocw.mit.edu/resources/res-18-001-calculus-online-textbook-spring-2005/study-guide/MITRES_18_001_guide3.pdf") %></td>
+    		    </tr>
+    		    <tr>
+    		    <td id="number"><%= link_to "Statistics", pdf_path(:pdf => "http://personal.maths.surrey.ac.uk/st/K.Young/form_sheet.pdf") %></td>
+    		    </tr>
+    		    <tr>
+    		    <td id="number"><%= link_to "Thermodynamics", pdf_path(:pdf => "http://www.ecs.umass.edu/mie/faculty/rothstein/230pdf/fe_thermodynamics_reference_handbook1.pdf") %></td>
+    		    </tr>
+    		</tbody>
+    	</table>
+  </div>
+</div>
+</div>

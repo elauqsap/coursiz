@@ -42,5 +42,13 @@ When(/^I have entered FalseAnswer3 "(.*?)"$/) do |falseThree|
    fill_in 'quiz_false_3', :with => falseThree
 end
 
+When(/^show me page$/) do
+  save_and_open_page
+end
+
+When(/^I choose "(.*?)"$/) do |radioButton|
+  choose(radioButton)
+end
+
 
 

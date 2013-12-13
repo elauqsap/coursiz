@@ -88,7 +88,7 @@ And I have pressed "Add Category"
 And I should see "Selt was added successfully" 
 And have added name "Digital Design"
 And I have pressed "Add Category"
-When I click link "Quizzes by Category"
+When I click link "All Quizzes"
 Then I should see "Selt"
 And I should see "Digital Design"
 

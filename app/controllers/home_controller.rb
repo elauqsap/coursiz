@@ -57,7 +57,11 @@ class HomeController < ApplicationController
   end
 
   def pdf
-    @pdf = params[:pdf]
+    if !params[:pdf].nil?
+      @pdf = params[:pdf]
+    else
+      redirect_to root_path
+    end
   end
 
 end

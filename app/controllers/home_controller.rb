@@ -46,4 +46,8 @@ class HomeController < ApplicationController
     end
   end
 
+  def pdf
+    @pdf = params[:pdf]
+  end
+
 end

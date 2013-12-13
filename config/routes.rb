@@ -5,6 +5,8 @@ Coursiz::Application.routes.draw do
   root :to => "home#index"
   devise_for :users
   resources :users
+  get '/studyguides', to: 'home#studyguides', as: 'studyguides'
+  get '/pdf', to: 'home#pdf', as: 'pdf'
   get '/admin_task/', to: 'home#index', as: 'index'
   post '/complete', to: 'home#complete', as: 'complete'
   get '/support', to: 'home#support', as: 'support'

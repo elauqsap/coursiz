@@ -12,6 +12,7 @@ helper_method :sort_column, :sort_direction
     if !@cat.nil?
       @catQuizzes = @cat.quizzes
       @cat2 = @catQuizzes.pluck(:difficulty).uniq
+      @url_text = ["Beginning","Middle","End"]
       render :json => @catQuizzes if request.xhr?
     else
       redirect_to root_path

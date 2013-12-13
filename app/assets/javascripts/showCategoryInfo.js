@@ -18,7 +18,6 @@ var CategoryPopup = {
 
         var address = "categories/"+category;
 
-
           $.ajax({type: 'GET',
                   dataType: 'json',
                   url: address,
@@ -63,10 +62,21 @@ var CategoryPopup = {
           if($.inArray(jsonData[i].difficulty, dataArray) == -1){
               var difficulty = jsonData[i].difficulty;
 
+              var structure = null;
+              if(difficulty == 1){
+                structure = "Beginning"
+              }
+              else if(difficulty == 2){
+                structure = "Middle"
+              }
+              else if(difficulty == 3){
+                structure = "End"
+              }
+
               dataArray.push(difficulty);
               $("#"+categoryName+ "Table tbody").append(
                   "<tr>"+
-                      "<td id='quizSelection' class="+categoryName+">"+jsonData[i].difficulty+"</td>"+
+                      "<td id='quizSelection' class="+categoryName+">"+structure+"</td>"+
                   "</tr>");
 
           }
@@ -84,8 +94,21 @@ var CategoryPopup = {
 
     var quizCat = $(this).attr('class');
     var quizId = $(this).html();
+    var url = null;
 
-    var nextLocation = "/categories/"+quizCat+"/quizzes/"+quizId;
+    if(quizId == "Beginning"){
+      url = 1;
+    }
+    else if(quizId == "Middle"){
+      url = 2;
+    }
+    else if(quizId == "End"){
+      url = 3;
+    }
+
+
+
+    var nextLocation = "/categories/"+quizCat+"/quizzes/"+url;
 
     window.location = nextLocation;
 

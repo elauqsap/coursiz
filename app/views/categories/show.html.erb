@@ -4,7 +4,7 @@
           <%= render 'layouts/sidenav' %>
         </div>
       <div class="span10">
-          <table class="table table-bordered">
+          <table class="table table-bordered" id="catTable">
               <thead>
                 <tr>
                   <th><%= sortable "quiz number" %></th>
@@ -13,7 +13,7 @@
               <tbody>
               <% @cat2.each do |cat| %>
                 <tr>
-                  <td id="<%= cat %>"><a href="<%= @cat.name%>/quizzes/<%= cat%>"><%= cat %></a></td>
+                  <td id="<%= cat %>"><a href="/categories/<%= @cat.name%>/quizzes/<%= cat%>"><%= @url_text[cat-1] %></a></td>
                 </tr>
               <% end %>
               </tbody>

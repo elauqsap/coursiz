@@ -27,6 +27,8 @@ Category.create( :real_name => 'EPS', :name => 'eps')
 
 Category.create( :real_name => 'Software Engineering', :name => 'softwareengineering')
 
+Category.create( :real_name => 'SELT', :name => 'selt')
+
 puts 'Calculus I Questions'
 
 Quiz.create(
@@ -1492,6 +1494,175 @@ Quiz.create(
 :false_2 => '2 and 4', 
 :false_3 => '3 and 4',
 :question_number => 15)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 1, 
+:question =>'Plugins for Ruby on Rails are called what?', 
+:answer =>  'Gems', 
+:false_1 => 'Potatoes', 
+:false_2 => 'Beans', 
+:false_3 => 'Adderators',
+:question_number => 1)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 1, 
+:question =>'What will the command "rails s" do?', 
+:answer =>  'Start the rails server', 
+:false_1 => 'Save all your rails progress', 
+:false_2 => 'Start the rails screensaver', 
+:false_3 => 'Start the rails tests',
+:question_number => 2)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 1, 
+:question =>'What does the R in DRY mean?', 
+:answer =>  'Repeat', 
+:false_1 => 'Render', 
+:false_2 => 'Redo', 
+:false_3 => 'Relaunch',
+:question_number => 3)
+
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 1, 
+:question =>'What does a Rails migration do?', 
+:answer =>  'Setup or modify a database structure', 
+:false_1 => 'Allow other developers access to your software', 
+:false_2 => 'Translate Java or PHP code to Ruby', 
+:false_3 => 'Load config files on server startup',
+:question_number => 4)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 1, 
+:question =>'If Post has_many comment, which table holds the foreign key for the other?', 
+:answer =>  'Comment', 
+:false_1 => 'Post', 
+:false_2 => 'Neither', 
+:false_3 => 'I give up. Please have mercy on me. I accept no points.',
+:question_number => 5)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 1, 
+:question =>'what does the V in MVC stand for?', 
+:answer =>  'View', 
+:false_1 => 'Variable', 
+:false_2 => 'Verified', 
+:false_3 => 'Vast',
+:question_number => 6)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 1, 
+:question =>'Which of these is not like the others?', 
+:answer =>  'home_page', 
+:false_1 => 'home_path', 
+:false_2 => 'root_path', 
+:false_3 => 'root_url',
+:question_number => 7)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 1, 
+:question =>'What is a concern?', 
+:answer =>  'A modular segment of behavioral code.', 
+:false_1 => 'A way to have a model watch for data exchange', 
+:false_2 => 'A serializer that concerns itself with a model', 
+:false_3 => 'A way of enforcing security',
+:question_number => 8)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 1, 
+:question =>'Who was Ruby designed by?', 
+:answer =>  'Yukihiro Matsumoto', 
+:false_1 => 'Hiroshi Yamauchi', 
+:false_2 => 'Takashi Tezuka', 
+:false_3 => 'Shigeru',
+:question_number => 9)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 1, 
+:question =>'Which argument to the rails command will generate a new rails application?', 
+:answer =>  'rails new', 
+:false_1 => 'rails create', 
+:false_2 => 'rails generate', 
+:false_3 => 'rails start',
+:question_number => 10)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 1, 
+:question =>'What command will let us invoke rails to generate an appliaction or scaffold?', 
+:answer =>  'rails', 
+:false_1 => 'rubyrails', 
+:false_2 => 'r', 
+:false_3 => 'rubyonrails',
+:question_number => 11)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 1, 
+:question =>'What command starts the rails server?', 
+:answer =>  'rails server', 
+:false_1 => 'rails generate', 
+:false_2 => 'rails start', 
+:false_3 => 'rails new',
+:question_number => 12)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 1, 
+:question =>'Which of the following would generate a rails appliaction called treebook?', 
+:answer =>  'ruby rails new treebook', 
+:false_1 => 'rails new treebook', 
+:false_2 => 'rails generate treebook', 
+:false_3 => 'rails new treebook',
+:question_number => 13)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 1, 
+:question =>'Which of the following is not a core Rails package?', 
+:answer =>  'ActiveRecord', 
+:false_1 => 'ActionMailer', 
+:false_2 => 'ActiveResource', 
+:false_3 => 'ActionController',
+:question_number => 14)
+
+Quiz.create(
+:category_name => 'selt',
+:category_id => Category.find_by_name('selt').id,
+:difficulty => 1, 
+:question =>'What is object oriented programming?', 
+:answer =>  'Method to model programs with classes, objects, and inheritance', 
+:false_1 => 'Method to model programs with spagetti code', 
+:false_2 => 'Method to model programs quickly', 
+:false_3 => 'Method to program graphically',
+:question_number => 15)
+
+
+
 
 puts 'successfully put Questions'
 puts 'Add AdminTasks to DB'

@@ -2,30 +2,30 @@
     <h2>Welcome <%= @users.name%>
     <hr>
     <% if @enrolled_categories.size > 0 %>
-    	<h4>Enrolled Classes</h4>
-    		<table class="table table-bordered animated fadeIn">
-    		    <thead>
-    		      <tr>
-    		        <th><%="Name" %></th>
-    		        <th><%= "Remove" %></th>
-    		      </tr>
-    		    </thead>
-    		    <tbody>
-    		    <%= form_tag("categories/remove_categories", method: "post") do %>
-    		    <% @enrolled_categories.each do |cat| %>
-    		      <tr  id="<%= cat%>" >
-    		        <td class="category" id="<%= cat.gsub(/\s+/, "").downcase %>" ><a href="categories/<%=cat.gsub(/\s+/, "").downcase%>"><i class="icon-chevron-right"></i>  <%= cat %></a></td>
-    		       <td id="number">
-    		         <%= check_box_tag("remove_collection[#{cat}]") %>
-    		       </td>
-    		      </tr>
-    		    <% end %>
-    		    </tbody>
-    		  </table>
-    		  <%= submit_tag 'Remove Classes', :id => 'removed_classes', :class => 'btn btn-primary' %>
+        <h4>Your enrolled classes</h4>
+            <table class="table table-bordered animated fadeIn">
+                <thead>
+                  <tr>
+                    <th><%="Name" %></th>
+                    <th><%= "Remove" %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                <%= form_tag("categories/remove_categories", method: "post") do %>
+                <% @enrolled_categories.each do |cat| %>
+                  <tr  id="<%= cat%>" >
+                    <td class="category" id="<%= @enrolled_array[@enrolled_categories.index(cat)] %>" ><a href="categories/<%=@enrolled_array[@enrolled_categories.index(cat)]%>"><i class="icon-chevron-right"></i>  <%= cat %></a></td>
+                   <td id="number">
+                     <%= check_box_tag("remove_collection[#{cat}]") %>
+                   </td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+              <%= submit_tag 'Remove classes', :id => 'removed_classes', :class => 'btn btn-primary' %>
 
-    		  <% end %> 
+              <% end %> 
     <% else %>
-        <h4>Your are not enrolled in any classes
-	<% end %>
+        <h4>You are not enrolled in any classes
+    <% end %>
 </div>

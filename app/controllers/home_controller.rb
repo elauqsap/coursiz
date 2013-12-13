@@ -16,7 +16,17 @@ class HomeController < ApplicationController
       current_user.categories_enrolled = Array.new
       current_user.save
     end
+
     @enrolled_categories = current_user.categories_enrolled
+
+    @enrolled_categories_downcase = @enrolled_categories
+
+    @enrolled_array = Array.new
+
+    @enrolled_categories_downcase.each do |n|
+
+      @enrolled_array <<  n.gsub(/\s+/, "").downcase
+    end
   end
 
   def complete

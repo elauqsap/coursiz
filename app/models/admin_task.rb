@@ -22,7 +22,11 @@ class AdminTask < ActiveRecord::Base
   	@tasks = AdminTask.all
   	@tasks.each_entry do |task|
   		if task[:request_type].match(/Question Review/)
-        task[:request] = "Please review the following questions for accuracy " + task[:request].gsub!(",", ", ")
+        if !task[:request].length == 1
+          task[:request] = "Please review the following questions for accuracy " + task[:request].gsub!(",", ", ")
+        else
+          task[:request] = "Please review the following questions for accuracy " + task[:request]
+        end
       end
   	end
   	return @tasks

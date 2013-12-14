@@ -43,7 +43,7 @@ When(/^I have entered FalseAnswer3 "(.*?)"$/) do |falseThree|
 end
 
 When(/^show me page$/) do
-  save_and_open_page
+  #save_and_open_page
 end
 
 When(/^I choose "(.*?)"$/) do |radioButton|
